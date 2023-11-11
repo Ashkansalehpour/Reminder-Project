@@ -81,3 +81,12 @@ h2 {
   margin-top: var(--clock-margin-top);
   margin-bottom: var(--clock-margin-bottom);
 }
+/* styles for the time container */
+#time {
+  position: relative;
+  width: var(--time-container-size);
+  height: var(--time-container-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
