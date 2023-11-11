@@ -11,6 +11,40 @@
         <!-- Main container for the clock -->
         <div id="time">
             <!-- Container for time-related elements -->
+            <div class="circle" style="--clr: #1dff5d">
+                <!-- Circle for seconds -->
+              <div class="dots sec_dot"></div>
+                <!-- Dot for seconds -->
+              <svg>
+                <!-- SVG for seconds -->
+                <circle cx="120" cy="120" r="120" id="ss"></circle>
+                <!-- Circle element for seconds -->
+              </svg>
+              <div class="circle-color color-sec"></div>
+                <!-- Colored circle for seconds -->
+            </div>
+            <div class="circle" style="--clr: #fae60e">
+                  <!-- Circle for minutes -->
+              <div class="dots min_dot"></div>
+                  <!-- Dot for minutes -->
+              <svg>
+                  <!-- SVG for minutes -->
+                <circle cx="100" cy="100" r="100" id="mm"></circle>
+                  <!-- Circle element for minutes -->
+              </svg>
+              <div class="circle-color color-min"></div>
+                  <!-- Colored circle for minutes -->
+            </div>
+            <div class="circle" style="--clr: #fb296d">
+                  <!-- Circle for hours -->
+              <div class="dots hr_dot"></div>
+                  <!-- Dot for hours -->
+              <svg>
+                  <!-- SVG for hours -->
+                <circle cx="80" cy="80" r="80" id="hh"></circle>
+                  <!-- Circle element for hours -->
+              </svg>
+            </div>
             <div id="time-display" class="time-display">
           <!-- Container for time and date display -->
         </div>
