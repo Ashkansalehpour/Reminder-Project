@@ -1,0 +1,47 @@
+/* adding root to CSS */
+:root {
+    --font-family: 'Poppins', sans-serif;
+    --primary-background: #141414;
+    --text-color: #fff;
+    --accent-color: #585757;
+    --container-width: 955px;
+    --header-padding: 9px;
+    --search-input-background: #333;
+    --search-input-placeholder-color: #fff;
+    --search-icon-color: #fff;
+    --filter-button-background: transparent;
+    --filter-button-text-color: #333333;
+    --filter-button-icon-size: 50px;
+    --add-item-button-background: #252525;
+    --add-item-button-text-color: #fff;
+    --popup-background: #222;
+    --popup-text-color: #fff;
+    --popup-border-radius: 5px;
+    --popup-width: 100px;
+    --popup-distance-top: 50px;
+    --popup-distance-right: 0;
+    --note-background: #333;
+    --note-border: 1px solid #252525;
+    --note-padding: 20px;
+    --note-border-radius: 33px;
+    --note-ring-time-font-size: 35px;
+    --note-remaining-days-font-size: 25px;
+    --small-checkbox-background: #b93b3b;
+    --small-checkbox-checked-background: #4cb93b;
+    --small-checkbox-after-background: #252525;
+    --clock-size: 247px;
+    --clock-shadow: inset 5px 5px 25px rgba(0, 0, 0, 0.25);
+    --clock-border-radius: 50%;
+    --clock-margin-top: 141px;
+    --clock-margin-bottom: 121px;
+    --time-container-size: 250px;
+    --circle-stroke-width: 5;
+    --time-display-font-size: 1.5rem;
+    --date-display-font-size: 1rem;
+    --dots-color: var(--clr);
+    --dots-shadow: 0 0 40px var(--clr), 0 0 40px var(--clr), 0 0 60px var(--clr),
+      0 0 80px var(--clr);
+    --time-label-color: #999;
+    --time-label-font-family: consolas;
+  }
+
