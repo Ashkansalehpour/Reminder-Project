@@ -108,43 +108,64 @@ The SVG elements within each circle have a relative position and are rotated 270
 }
 
 #time .circle:nth-child(1) svg {
-    height: var(--time-container-size);
-    width: var(--time-container-size);
-  }
-  
-  #time .circle:nth-child(2) svg {
-    height: calc(var(--time-container-size) - 40px);
-    width: calc(var(--time-container-size) - 40px);
-  }
-  
-  #time .circle:nth-child(3) svg {
-    height: calc(var(--time-container-size) - 80px);
-    width: calc(var(--time-container-size) - 80px);
-  }
-/* styles for the circle within each SVG */
-  #time .circle svg circle {
-    width: 100%;
-    height: 100%;
-    fill: transparent;
-    stroke-width: var(--circle-stroke-width);
-    stroke: var(--clr);
-    transform: translate(5px, 5px);
-    opacity: 0.75;
-  }
-  
-  #time .circle:nth-child(1) svg circle {
-    stroke-dasharray: 760;
-    stroke-dashoffset: 760;
-  }
-  
-  #time .circle:nth-child(2) svg circle {
-    stroke-dasharray: 630;
-    stroke-dashoffset: 630;
-  }
-  
-  #time .circle:nth-child(3) svg circle {
-    stroke-dasharray: 510;
-    stroke-dashoffset: 510;
-  }
+  height: var(--time-container-size);
+  width: var(--time-container-size);
+}
 
-  
+#time .circle:nth-child(2) svg {
+  height: calc(var(--time-container-size) - 40px);
+  width: calc(var(--time-container-size) - 40px);
+}
+
+#time .circle:nth-child(3) svg {
+  height: calc(var(--time-container-size) - 80px);
+  width: calc(var(--time-container-size) - 80px);
+}
+/* styles for the circle within each SVG */
+#time .circle svg circle {
+  width: 100%;
+  height: 100%;
+  fill: transparent;
+  stroke-width: var(--circle-stroke-width);
+  stroke: var(--clr);
+  transform: translate(5px, 5px);
+  opacity: 0.75;
+}
+
+#time .circle:nth-child(1) svg circle {
+  stroke-dasharray: 760;
+  stroke-dashoffset: 760;
+}
+
+#time .circle:nth-child(2) svg circle {
+  stroke-dasharray: 630;
+  stroke-dashoffset: 630;
+}
+
+#time .circle:nth-child(3) svg circle {
+  stroke-dasharray: 510;
+  stroke-dashoffset: 510;
+}
+
+/* styles for the time display section */
+/* Styles for the time display section and date display section, both positioned absolutely.
+ */
+.time-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--time-display-font-size);
+  color: var(--text-color);
+}
+
+/* styles for the date display section */
+/* Styles for the dots created using the ::before pseudo-element. It has a circular appearance with shadow effects. */
+.date-display {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--date-display-font-size);
+    color: #999;
+}
