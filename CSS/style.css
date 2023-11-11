@@ -66,7 +66,8 @@ h2 {
   margin: 0;
   color: #585757;
 }
-
+/* styles for the clock container */
+/* The .clock class represents the main container for the clock */
 .clock {
   position: relative;
   width: var(--clock-size);
