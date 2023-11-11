@@ -121,3 +121,30 @@ The SVG elements within each circle have a relative position and are rotated 270
     height: calc(var(--time-container-size) - 80px);
     width: calc(var(--time-container-size) - 80px);
   }
+/* styles for the circle within each SVG */
+  #time .circle svg circle {
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    stroke-width: var(--circle-stroke-width);
+    stroke: var(--clr);
+    transform: translate(5px, 5px);
+    opacity: 0.75;
+  }
+  
+  #time .circle:nth-child(1) svg circle {
+    stroke-dasharray: 760;
+    stroke-dashoffset: 760;
+  }
+  
+  #time .circle:nth-child(2) svg circle {
+    stroke-dasharray: 630;
+    stroke-dashoffset: 630;
+  }
+  
+  #time .circle:nth-child(3) svg circle {
+    stroke-dasharray: 510;
+    stroke-dashoffset: 510;
+  }
+
+  
