@@ -106,3 +106,18 @@ The SVG elements within each circle have a relative position and are rotated 270
   position: relative;
   transform: rotate(270deg);
 }
+
+#time .circle:nth-child(1) svg {
+    height: var(--time-container-size);
+    width: var(--time-container-size);
+  }
+  
+  #time .circle:nth-child(2) svg {
+    height: calc(var(--time-container-size) - 40px);
+    width: calc(var(--time-container-size) - 40px);
+  }
+  
+  #time .circle:nth-child(3) svg {
+    height: calc(var(--time-container-size) - 80px);
+    width: calc(var(--time-container-size) - 80px);
+  }
