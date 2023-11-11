@@ -194,3 +194,21 @@ The SVG elements within each circle have a relative position and are rotated 270
   box-shadow: 0 0 40px var(--clr), 0 0 40px var(--clr), 0 0 60px var(--clr),
     0 0 80px var(--clr);
 }
+
+/* Styles for the time labels, positioned absolutely with a specified inset. */
+#time span {
+  position: absolute;
+  inset: 55px;
+  text-align: center;
+  color: var(--time-label-color);
+  font-family: var(--time-label-font-family);
+  transform: rotate(calc(30deg * var(--i)));
+}
+
+/* The bold elements within the spans have additional styles. */
+#time span b {
+  font-size: 0.75em;
+  font-weight: 500;
+  display: inline-block;
+  transform: rotate(calc(-30deg * var(--i)));
+}
