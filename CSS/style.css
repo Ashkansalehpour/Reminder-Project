@@ -90,3 +90,19 @@ h2 {
   justify-content: center;
   align-items: center;
 }
+/* styles for each circle within the time container */
+
+/* They are positioned absolutely within the time container.
+The SVG elements within each circle have a relative position and are rotated 270 degrees. */
+#time .circle {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* styles for the SVG elements within each circle */
+#time .circle svg {
+  position: relative;
+  transform: rotate(270deg);
+}
