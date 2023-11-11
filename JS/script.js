@@ -1,3 +1,6 @@
+//* This code sets up a timer using setInterval to repeatedly execute the code inside the arrow function every 1000 milliseconds (1 second).
+
+//* This creates a continuous update for the clock, ensuring that the displayed time is always current.
 setInterval(() => {
     // This line selects the HTML element with the ID 'hh' using the getElementById method. The selected element represents the hour indicator in the clock.
     const hh = document.getElementById('hh');
@@ -50,7 +53,7 @@ setInterval(() => {
     currentDate.style.fontSize = '15px';
     //  Add left padding to the text inside the currentDate element, pushing it 20 pixels away from the left edge.
     currentDate.style.paddingLeft = '20px';
-}, 1000)
+}, 1000);
 
 // This line declares the start of the getCurrentDate function.
 function getCurrentDate() {
