@@ -1,6 +1,6 @@
 setInterval(() => {
     // This line selects the HTML element with the ID 'hh' using the getElementById method. The selected element represents the hour indicator in the clock.
-    const hh = document.getElementById('hh'); 
+    const hh = document.getElementById('hh');
     // Similar to the first line, this selects the HTML element with the ID 'mm', representing the minute indicator in the clock.
     const mm = document.getElementById('mm');
     // This line selects the HTML element with the ID 'ss', representing the second indicator in the clock.
@@ -22,4 +22,17 @@ setInterval(() => {
     const m = new Date().getMinutes();
     // Once again, a new Date object is created. The getSeconds() method is called to get the current second in the local time zone, and the result is stored in the variable `s`.
     const s = new Date().getSeconds();
-},1000)
+
+    //* These lines dynamically update the visual aspects of the clock.
+
+    //* They adjust the strokeDashoffset of the circles representing hours (hh), minutes (mm), and seconds (ss). 
+
+    //* Additionally, they rotate the dots representing seconds (sec_dot), minutes (min_dot), and hours (hr_dot) based on the current time.
+    hh.style.strokeDashoffset = 510 - (510 * h) / 12;
+    mm.style.strokeDashoffset = 630 - (630 * m) / 60;
+    ss.style.strokeDashoffset = 760 - (760 * s) / 60;
+    sec_dot.style.transform = `rotateZ(${s * 6}deg)`;
+    min_dot.style.transform = `rotateZ(${m * 6}deg)`;
+    hr_dot.style.transform = `rotateZ(${h * 30}deg`;
+
+}, 1000)
