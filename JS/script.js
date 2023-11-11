@@ -51,3 +51,17 @@ setInterval(() => {
     //  Add left padding to the text inside the currentDate element, pushing it 20 pixels away from the left edge.
     currentDate.style.paddingLeft = '20px';
 }, 1000)
+
+// This line declares the start of the getCurrentDate function.
+function getCurrentDate() {
+    // Create a new Date object representing the current date and time
+    const today = new Date();
+    // Get the last two digits of the current year.
+    const yy = today.getFullYear().toString().slice(-2);
+    // Get the day of the month.
+    const dd = today.getDate();
+    // Get the month (adding 1 to adjust for zero-based indexing).
+    const mm = today.getMonth() + 1;
+    // Construct a formatted date string in the "yy/dd/mm" format, ensuring leading zeros for single-digit days and months
+    return `${yy}/${dd < 10 ? '0' + dd : dd}/${mm < 10 ? '0' + mm : mm}`;
+}
