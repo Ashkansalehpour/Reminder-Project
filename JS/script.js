@@ -34,11 +34,20 @@ setInterval(() => {
     sec_dot.style.transform = `rotateZ(${s * 6}deg)`;
     min_dot.style.transform = `rotateZ(${m * 6}deg)`;
     hr_dot.style.transform = `rotateZ(${h * 30}deg`;
-    
+
     //* This block creates a formatted time string using template literals.
     //* The hours, minutes, and seconds are individually wrapped in <span> elements with different colors.
     //* This formatted time is then set as the inner HTML of the currentTime element.
     const formattedTime = `<span style="color: #fb296d">${h < 10 ? '0' + h : h}</span>:<span style="color: #fae60e">${m < 10 ? '0' + m : m}</span>.<span style="color: #20c74d">${s < 10 ? '0' + s : s}</span>`;
     // This line sets the innerHTML property of the currentTime element to the previously created formattedTime string. In other words, it updates the content of the HTML element with the ID 'current-time' to display the formatted time.
     currentTime.innerHTML = formattedTime;
+
+    // Set the text content of the currentDate element to the result of the getCurrentDate() function, which likely returns the current date in the format "yy/dd/mm".
+    currentDate.textContent = getCurrentDate();
+    // Explanation: Set the text color of the currentDate element to a light gray with 35% transparency.
+    currentDate.style.color = 'rgba(215 215 215 / 35%)';
+    // Explanation: Set the font size of the text inside the currentDate element to 15 pixels.
+    currentDate.style.fontSize = '15px';
+    //  Add left padding to the text inside the currentDate element, pushing it 20 pixels away from the left edge.
+    currentDate.style.paddingLeft = '20px';
 }, 1000)
