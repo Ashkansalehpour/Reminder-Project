@@ -209,7 +209,19 @@ function updateNotesBySearch(keyword) {
     });
 }
 
+// Event listener for the filter button
+document.getElementById("filterButton").addEventListener("click", () => {
+    const popup = document.getElementById("filterPopup");
+    const filterButton = document.getElementById("filterButton");
 
+    // Calculate the position to show the popup next to the filterButton
+    popup.style.left = "803.85px";
+    popup.style.top = "409.4px";
+    popup.style.transition = "left 0.3s, top 0.3s";
+
+    // Toggle the "show" class to control visibility
+    popup.classList.toggle("show");
+});
 
 
 
