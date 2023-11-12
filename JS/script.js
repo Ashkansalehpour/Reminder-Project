@@ -141,6 +141,24 @@ function formatTime(time) {
     }
 }
 
+// Function to calculate remaining time
+function calculateRemainingTime(endTime) {
+    try {
+        const endDateTime = new Date(endTime);
+        const now = new Date();
+        const timeDifference = endDateTime - now;
+
+        // Calculate days and months difference
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const months = Math.floor(Math.abs(days) / 30);
+        const remainingDays = Math.abs(days) % 30;
+
+        return `${months} month${months !== 1 ? 's' : ''} and ${remainingDays} day${remainingDays !== 1 ? 's' : ''}`;
+    } catch (error) {
+        console.error("Error calculating remaining time:", error);
+        return "N/A";
+    }
+}
 
 
 
