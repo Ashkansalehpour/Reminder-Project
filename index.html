@@ -60,7 +60,30 @@
       </div>
     </div>
     <!-- Header, filter popup, notes container, and scripts -->
-    <div class="container"></div>
+    <div class="container">
+      <!-- Header section -->
+      <header class="header">
+        <!-- Search input container -->
+        <div class="search-input-container">
+          <!-- Magnifying glass icon for search -->
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <!-- Search input field -->
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search for your note ..."
+          />
+        </div>
+
+        <!-- Button to add an item -->
+        <button id="addItemButton">Add Item</button>
+
+        <!-- Button for filter with filter icon -->
+        <button id="filterButton">
+          <i class="fa-solid fa-filter filter-icon"></i>
+        </button>
+      </header>
+    </div>
     <script
       src="https://kit.fontawesome.com/0f106f397a.js"
       crossorigin="anonymous"
