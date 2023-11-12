@@ -8,27 +8,16 @@ let defaultNotes = [
     { title: "Default Note 3", endTime: "2023-11-06T05:00:00Z", status: "active" }
 ];
 
-
 // Function to render notes
 function renderNotes(notes) {
-    // Get the notes container element by ID
     const notesContainer = document.getElementById("notesContainer");
-    // Clear the existing content inside the container
     notesContainer.innerHTML = '';
 
-    // Iterate through each note in the notes array
     notes.forEach((note, index) => {
-        // Create a new div element for each note
         const noteElement = document.createElement("div");
-        // Add "note" class to the note element
         noteElement.classList.add("note");
-        // Make the note div draggable
-        noteElement.draggable = true;
-
-        // Generate a unique ID for the checkbox associated with each note
+        noteElement.draggable = true; // Make note divs draggable
         const uniqueId = `switch${index}`;
-
-        // Set the inner HTML content of the note element
         noteElement.innerHTML = `
             <div class="note-content">
                 <div class="left-content">
@@ -43,13 +32,11 @@ function renderNotes(notes) {
             </div>
         `;
 
-        // Add drag-and-drop event listeners to the note element
         noteElement.addEventListener('dragstart', handleDragStart);
         noteElement.addEventListener('dragover', handleDragOver);
         noteElement.addEventListener('drop', handleDrop);
         noteElement.addEventListener('dragend', handleDragEnd);
 
-        // Append the note element to the notes container
         notesContainer.appendChild(noteElement);
     });
 }
@@ -76,39 +63,32 @@ renderNotes(notes);
 let dragSrcElement = null;
 
 function handleDragStart(e) {
-    // Set the drag effect and data
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/html', this.innerHTML);
 
-    // Set the source element for drag-and-drop
     dragSrcElement = this;
 
-    // Set the opacity of the dragged element
     this.style.opacity = '0.4';
 }
 
 function handleDragOver(e) {
-    // Prevent default behavior and set drop effect
     if (e.preventDefault) {
-        e.preventDefault();
+        e.preventDefault(); // Necessary for drop to work
     }
     e.dataTransfer.dropEffect = 'move';
     return false;
 }
 
 function handleDrop(e) {
-    // Stop propagation and prevent default behavior
     if (e.stopPropagation) {
-        e.stopPropagation();
+        e.stopPropagation(); // stops the browser from redirecting.
     }
 
-    // Check if the source element is different from the drop target
     if (dragSrcElement !== this) {
-        // Swap inner HTML content between source and target elements
         dragSrcElement.innerHTML = this.innerHTML;
         this.innerHTML = e.dataTransfer.getData('text/html');
 
-        // Update the order of notes based on the new arrangement
+        // Update the 'defaultNotes' array to reflect the new order.
         const dragIndex = Array.from(this.parentNode.children).indexOf(dragSrcElement);
         const dropIndex = Array.from(this.parentNode.children).indexOf(this);
         const updatedNotes = [...defaultNotes];
@@ -125,7 +105,6 @@ function handleDrop(e) {
 }
 
 function handleDragEnd() {
-    // Reset the opacity of the dragged element
     this.style.opacity = '1';
 }
 
@@ -148,7 +127,6 @@ function calculateRemainingTime(endTime) {
         const now = new Date();
         const timeDifference = endDateTime - now;
 
-        // Calculate days and months difference
         const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
         const months = Math.floor(Math.abs(days) / 30);
         const remainingDays = Math.abs(days) % 30;
@@ -160,6 +138,9 @@ function calculateRemainingTime(endTime) {
     }
 }
 
+
+
+
 // Function to sort notes based on title (A-Z)
 function sortNotesAZ() {
     defaultNotes.sort((a, b) => {
@@ -168,9 +149,9 @@ function sortNotesAZ() {
         return titleA < titleB ? -1 : titleA > titleB ? 1 : 0;
     });
 
-    // Render the sorted notes
     renderNotes(defaultNotes);
 }
+
 
 // Function to sort notes based on date (ascending order)
 // Function to sort notes based on the highest date (descending order)
@@ -181,33 +162,16 @@ function sortNotesByHighestDate() {
         return dateB - dateA; // Sort in descending order
     });
 
-    // Render the sorted notes
     renderNotes(defaultNotes);
 }
 
 // Event listener for the sortDateButton
 document.getElementById("sortDateButton").addEventListener("click", sortNotesByHighestDate);
-// Event listener for the "Add Item" button
-document.getElementById("addItemButton").addEventListener("click", redirectToCreateNote);
-// Function to update notes based on the search keyword
-function updateNotesBySearch(keyword) {
-    const notesContainer = document.getElementById("notesContainer");
-    const notes = Array.from(notesContainer.querySelectorAll(".note"));
 
-    // Iterate through each note and update visibility based on the search keyword
-    notes.forEach(note => {
-        const titleElement = note.querySelector("h2");
-        const title = titleElement.textContent;
 
-        // Check if the title includes the search keyword
-        const match = title.toLowerCase().includes(keyword.toLowerCase());
-        note.style.display = match ? "block" : "none";
+// Event listener for the sortDateButton
 
-        // Highlight the matched keyword
-        const regex = new RegExp(`(${keyword})`, 'gi');
-        titleElement.innerHTML = title.replace(regex, '<span class="highlighted">$1</span>');
-    });
-}
+
 
 // Event listener for the filter button
 document.getElementById("filterButton").addEventListener("click", () => {
@@ -219,16 +183,44 @@ document.getElementById("filterButton").addEventListener("click", () => {
     popup.style.top = "409.4px";
     popup.style.transition = "left 0.3s, top 0.3s";
 
-    // Toggle the "show" class to control visibility
-    popup.classList.toggle("show");
+    popup.classList.toggle("show"); // Toggle the "show" class to control visibility
 });
 
+// Event listener for sorting A-Z
+document.getElementById("sortAZButton").addEventListener("click", sortNotesAZ);
 
+// Function to navigate to the create-note.html page when clicking the "Add Item" button
+function redirectToCreateNote() {
+    window.location.href = "create-note.html";
+}
 
+// Event listener for the "Add Item" button
+document.getElementById("addItemButton").addEventListener("click", redirectToCreateNote);
 
+// Function to update notes based on the search keyword
 
+function updateNotesBySearch(keyword) {
+    const notesContainer = document.getElementById("notesContainer");
+    const notes = Array.from(notesContainer.querySelectorAll(".note"));
 
+    notes.forEach(note => {
+        const titleElement = note.querySelector("h2");
+        const title = titleElement.textContent;
 
+        const match = title.toLowerCase().includes(keyword.toLowerCase());
+        note.style.display = match ? "block" : "none";
+
+        // Highlight the matched keyword
+        const regex = new RegExp(`(${keyword})`, 'gi');
+        titleElement.innerHTML = title.replace(regex, '<span class="highlighted">$1</span>');
+    });
+}
+
+// Event listener for the search input
+document.getElementById("searchInput").addEventListener("input", function () {
+    const searchInput = this.value.trim();
+    updateNotesBySearch(searchInput);
+});
 
 //* This code sets up a timer using setInterval to repeatedly execute the code inside the arrow function every 1000 milliseconds (1 second).
 
