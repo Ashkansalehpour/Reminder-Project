@@ -185,7 +185,8 @@ function sortNotesByHighestDate() {
     renderNotes(defaultNotes);
 }
 
-
+// Event listener for the sortDateButton
+document.getElementById("sortDateButton").addEventListener("click", sortNotesByHighestDate);
 
 
 
