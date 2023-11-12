@@ -129,7 +129,17 @@ function handleDragEnd() {
     this.style.opacity = '1';
 }
 
-
+// Function to format the time in HH:mm AM/PM format
+function formatTime(time) {
+    try {
+        const options = { hour: "2-digit", minute: "2-digit", hour12: true };
+        const formattedTime = new Date(time).toLocaleTimeString("en-US", options);
+        return formattedTime;
+    } catch (error) {
+        console.error("Error formatting time:", error);
+        return "Invalid time";
+    }
+}
 
 
 
