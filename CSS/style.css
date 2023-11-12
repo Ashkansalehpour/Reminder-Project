@@ -272,4 +272,25 @@ The SVG elements within each circle have a relative position and are rotated 270
   font-size: 16px;
   color: #fff;
   margin-right: 10px; /* Adjust the margin for spacing */
+} 
+/* Filter Icon Styles */
+.filter-icon {
+  font-size: 16px;
+  color: #fff;
+  margin-right: 10px; /* Adjust the margin for spacing */
+}
+
+/* Filter Button Styles */
+#filterButton {
+  background-color: transparent;
+  color: #333333;
+  border: none;
+  margin: 10px -60; /* Add margin to separate the buttons */
+  border-radius: 10px;
+  /* Adjust font size for mobile */
+}
+/* Filter Button Icon Styles */
+#filterButton i {
+  font-size: 50px;
+  cursor: pointer;
 }
