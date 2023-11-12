@@ -187,7 +187,8 @@ function sortNotesByHighestDate() {
 
 // Event listener for the sortDateButton
 document.getElementById("sortDateButton").addEventListener("click", sortNotesByHighestDate);
-
+// Event listener for the "Add Item" button
+document.getElementById("addItemButton").addEventListener("click", redirectToCreateNote);
 
 
 
