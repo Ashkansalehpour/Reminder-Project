@@ -72,6 +72,62 @@ if (loadedNotes) {
 // Render the notes
 renderNotes(notes);
 
+// Define the event handlers for drag-and-drop
+let dragSrcElement = null;
+
+function handleDragStart(e) {
+    // Set the drag effect and data
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.innerHTML);
+
+    // Set the source element for drag-and-drop
+    dragSrcElement = this;
+
+    // Set the opacity of the dragged element
+    this.style.opacity = '0.4';
+}
+
+function handleDragOver(e) {
+    // Prevent default behavior and set drop effect
+    if (e.preventDefault) {
+        e.preventDefault();
+    }
+    e.dataTransfer.dropEffect = 'move';
+    return false;
+}
+
+function handleDrop(e) {
+    // Stop propagation and prevent default behavior
+    if (e.stopPropagation) {
+        e.stopPropagation();
+    }
+
+    // Check if the source element is different from the drop target
+    if (dragSrcElement !== this) {
+        // Swap inner HTML content between source and target elements
+        dragSrcElement.innerHTML = this.innerHTML;
+        this.innerHTML = e.dataTransfer.getData('text/html');
+
+        // Update the order of notes based on the new arrangement
+        const dragIndex = Array.from(this.parentNode.children).indexOf(dragSrcElement);
+        const dropIndex = Array.from(this.parentNode.children).indexOf(this);
+        const updatedNotes = [...defaultNotes];
+
+        const [movedNote] = updatedNotes.splice(dragIndex, 1);
+        updatedNotes.splice(dropIndex, 0, movedNote);
+
+        // Save the updated notes order to local storage
+        localStorage.setItem("notesOrder", JSON.stringify(updatedNotes));
+        defaultNotes = updatedNotes;
+    }
+
+    return false;
+}
+
+function handleDragEnd() {
+    // Reset the opacity of the dragged element
+    this.style.opacity = '1';
+}
 
 
 
