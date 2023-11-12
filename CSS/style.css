@@ -353,3 +353,21 @@ The SVG elements within each circle have a relative position and are rotated 270
   color: var(--popup-text-color);
   font-size: 16px; /* Adjust font size for mobile */
 }
+/* Notes container styles for mobile */
+.notes {
+  padding: var(--note-padding);
+}
+/* Note styles for mobile */
+/* CSS for Note Styles */
+.note {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--note-background);
+  border: var(--note-border);
+  margin: 10px;
+  padding: var(--note-padding);
+  border-radius: var(--note-border-radius);
+  position: relative;
+  background: var(--note-background);
+}
