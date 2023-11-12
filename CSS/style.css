@@ -225,7 +225,7 @@ The SVG elements within each circle have a relative position and are rotated 270
   justify-content: space-evenly;
   align-items: center;
   margin-bottom: -27px;
-} 
+}
 
 /* Search Input Styles */
 #searchInput {
@@ -248,7 +248,7 @@ The SVG elements within each circle have a relative position and are rotated 270
 /* Style for the search input container */
 .search-input-container {
   /* : Specifies that the element should be a flex container */
-  display: flex; 
+  display: flex;
   /* Centers child elements along the cross axis. */
   align-items: center;
   background-color: var(--search-input-background);
@@ -258,7 +258,6 @@ The SVG elements within each circle have a relative position and are rotated 270
   height: 53px;
   width: 51%;
   margin-left: -11px;
-  
 }
 /* Search Input Icon Styles (magnifier icon) */
 .search-input-container i {
@@ -272,7 +271,7 @@ The SVG elements within each circle have a relative position and are rotated 270
   font-size: 16px;
   color: var(--text-color);
   margin-right: 10px; /* Adjust the margin for spacing */
-} 
+}
 /* Filter Icon Styles */
 .filter-icon {
   font-size: 16px;
@@ -306,7 +305,6 @@ The SVG elements within each circle have a relative position and are rotated 270
   border-radius: 10px;
   font-size: 32px; /* Adjust font size for mobile */
   margin-left: 21px;
-  
 }
 /* Popup styles */
 .popup {
@@ -370,4 +368,26 @@ The SVG elements within each circle have a relative position and are rotated 270
   border-radius: var(--note-border-radius);
   position: relative;
   background: var(--note-background);
+}
+/* CSS for Left Content (Ring Time and Remaining Days) */
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: stretch;
+  line-height: 0px;
+}
+/* Ring Time and Remaining Days Styles */
+
+.ring-time {
+  font-size: var(--note-ring-time-font-size);
+  padding-left: 21px;
+  color: var(--add-item-button-text-color);
+}
+
+.remaining-days {
+  font-size: var(--note-remaining-days-font-size);
+  margin-top: 4px;
+  color: var(--accent-color);
 }
