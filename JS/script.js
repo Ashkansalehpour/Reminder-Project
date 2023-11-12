@@ -189,6 +189,25 @@ function sortNotesByHighestDate() {
 document.getElementById("sortDateButton").addEventListener("click", sortNotesByHighestDate);
 // Event listener for the "Add Item" button
 document.getElementById("addItemButton").addEventListener("click", redirectToCreateNote);
+// Function to update notes based on the search keyword
+function updateNotesBySearch(keyword) {
+    const notesContainer = document.getElementById("notesContainer");
+    const notes = Array.from(notesContainer.querySelectorAll(".note"));
+
+    // Iterate through each note and update visibility based on the search keyword
+    notes.forEach(note => {
+        const titleElement = note.querySelector("h2");
+        const title = titleElement.textContent;
+
+        // Check if the title includes the search keyword
+        const match = title.toLowerCase().includes(keyword.toLowerCase());
+        note.style.display = match ? "block" : "none";
+
+        // Highlight the matched keyword
+        const regex = new RegExp(`(${keyword})`, 'gi');
+        titleElement.innerHTML = title.replace(regex, '<span class="highlighted">$1</span>');
+    });
+}
 
 
 
