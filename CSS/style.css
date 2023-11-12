@@ -391,3 +391,56 @@ The SVG elements within each circle have a relative position and are rotated 270
   margin-top: 4px;
   color: var(--accent-color);
 }
+/* CSS for Right Content (Checkbox, Toggle Label, and Title) */
+
+.right-content {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 20px; /* Adjust the positioning from the right edge */
+  top: 50%; /* Adjust the positioning vertically to center */
+  transform: translateY(-50%); /* Vertically center the right-content */
+}
+
+.small-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.small-label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 54px;
+  height: 27px;
+  background: var(--small-checkbox-background);
+  display: block;
+  border-radius: 10px;
+  position: relative;
+}
+
+.small-label:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background: var(--small-checkbox-after-background);
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+input:checked + .small-label {
+  background: var(--small-checkbox-checked-background);
+}
+
+input:checked + .small-label:after {
+  left: calc(140% - 27px);
+  transform: translateX(-100%);
+}
+
+.small-label:active:after {
+  width: 20px;
+  height: 20px;
+}
