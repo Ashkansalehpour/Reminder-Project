@@ -225,4 +225,51 @@ The SVG elements within each circle have a relative position and are rotated 270
   justify-content: space-evenly;
   align-items: center;
   margin-bottom: -27px;
+} 
+
+/* Search Input Styles */
+#searchInput {
+  width: 100%;
+  padding: 10px 17px 0px 0px;
+  background-color: #333;
+  margin: 10px 0;
+  border-radius: 10px;
+  outline: none;
+  font-size: 16px;
+  flex: 1; /* Allow the input to take available space */
+  border: none;
+  color: #fff;
+}
+/* Search Input Placeholder Styles */
+#searchInput::placeholder {
+  font-size: 26px;
+  color: #585757;
+}
+/* Style for the search input container */
+.search-input-container {
+  /* : Specifies that the element should be a flex container */
+  display: flex; 
+  /* Centers child elements along the cross axis. */
+  align-items: center;
+  background-color: #333;
+  border-radius: 10px;
+  margin: 1px 0;
+  padding: 0px;
+  height: 53px;
+  width: 51%;
+  margin-left: -11px;
+  
+}
+/* Search Input Icon Styles (magnifier icon) */
+.search-input-container i {
+  margin-left: 30px;
+  color: #585757;
+  font-size: 25px;
+}
+
+/* Style for the magnifying glass icon */
+.search-icon {
+  font-size: 16px;
+  color: #fff;
+  margin-right: 10px; /* Adjust the margin for spacing */
 }
