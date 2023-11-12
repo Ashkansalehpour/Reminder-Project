@@ -294,3 +294,17 @@ The SVG elements within each circle have a relative position and are rotated 270
   font-size: 50px;
   cursor: pointer;
 }
+
+/* Add Item Button Styles */
+#addItemButton {
+  background-color: var(--add-item-button-background);
+  color: var(--add-item-button-text-color);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 10px 0; /* Add margin to separate the buttons */
+  border-radius: 10px;
+  font-size: 32px; /* Adjust font size for mobile */
+  margin-left: 21px;
+  
+}
