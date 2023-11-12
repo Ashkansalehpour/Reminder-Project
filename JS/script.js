@@ -1,3 +1,94 @@
+// Default notes data with end times (in ISO format) and status
+let defaultNotes = [
+    { title: "Default Note 1", endTime: "2023-11-01T05:00:00Z", status: "active" },
+    { title: "Default Note 4", endTime: "2023-11-02T05:00:00Z", status: "active" },
+    { title: "Default Note 3", endTime: "2023-11-03T05:00:00Z", status: "active" },
+    { title: "Default Note 2", endTime: "2023-11-04T05:00:00Z", status: "active" },
+    { title: "Default Note 5", endTime: "2023-11-05T05:00:00Z", status: "active" },
+    { title: "Default Note 3", endTime: "2023-11-06T05:00:00Z", status: "active" }
+];
+
+
+// Function to render notes
+function renderNotes(notes) {
+    // Get the notes container element by ID
+    const notesContainer = document.getElementById("notesContainer");
+    // Clear the existing content inside the container
+    notesContainer.innerHTML = '';
+
+    // Iterate through each note in the notes array
+    notes.forEach((note, index) => {
+        // Create a new div element for each note
+        const noteElement = document.createElement("div");
+        // Add "note" class to the note element
+        noteElement.classList.add("note");
+        // Make the note div draggable
+        noteElement.draggable = true;
+
+        // Generate a unique ID for the checkbox associated with each note
+        const uniqueId = `switch${index}`;
+
+        // Set the inner HTML content of the note element
+        noteElement.innerHTML = `
+            <div class="note-content">
+                <div class="left-content">
+                    <p class="ring-time">${formatTime(note.endTime)}</p>
+                    <p class="remaining-days">${calculateRemainingTime(note.endTime)}</p>
+                </div>
+                <div class="right-content">
+                    <h2>${note.title}</h2>
+                    <input type="checkbox" id="${uniqueId}" class="small-checkbox" />
+                    <label for="${uniqueId}" class="small-label">Toggle</label>
+                </div>
+            </div>
+        `;
+
+        // Add drag-and-drop event listeners to the note element
+        noteElement.addEventListener('dragstart', handleDragStart);
+        noteElement.addEventListener('dragover', handleDragOver);
+        noteElement.addEventListener('drop', handleDrop);
+        noteElement.addEventListener('dragend', handleDragEnd);
+
+        // Append the note element to the notes container
+        notesContainer.appendChild(noteElement);
+    });
+}
+
+// Load notes from local storage or use default notes
+let loadedNotes = localStorage.getItem("notes");
+let notes;
+
+if (loadedNotes) {
+    // If notes exist in local storage, use them
+    notes = JSON.parse(loadedNotes);
+} else {
+    // If no notes in local storage, use default notes
+    notes = defaultNotes;
+
+    // Save default notes to local storage
+    localStorage.setItem("notes", JSON.stringify(defaultNotes));
+}
+
+// Render the notes
+renderNotes(notes);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //* This code sets up a timer using setInterval to repeatedly execute the code inside the arrow function every 1000 milliseconds (1 second).
 
 //* This creates a continuous update for the clock, ensuring that the displayed time is always current.
