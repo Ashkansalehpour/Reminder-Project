@@ -1,100 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reminder Project</title>
-    <link rel="stylesheet" href="CSS/style.css" />
-    <script
-      src="https://kit.fontawesome.com/0f106f397a.js"
-      crossorigin="anonymous"
-    ></script>
+    <title>Reminder App</title>
+    <link rel="stylesheet" type="text/css" href="CSS/style.css" />
+    <script src="https://kit.fontawesome.com/0f106f397a.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="clock">
       <!-- Main container for the clock -->
       <div id="time">
-        <!-- Container for time-related elements -->
+          <!-- Container for time-related elements -->
         <div class="circle" style="--clr: #1dff5d">
-          <!-- Circle for seconds -->
+            <!-- Circle for seconds -->
           <div class="dots sec_dot"></div>
-          <!-- Dot for seconds -->
+            <!-- Dot for seconds -->
           <svg>
             <!-- SVG for seconds -->
             <circle cx="120" cy="120" r="120" id="ss"></circle>
             <!-- Circle element for seconds -->
           </svg>
           <div class="circle-color color-sec"></div>
-          <!-- Colored circle for seconds -->
+            <!-- Colored circle for seconds -->
         </div>
         <div class="circle" style="--clr: #fae60e">
-          <!-- Circle for minutes -->
+              <!-- Circle for minutes -->
           <div class="dots min_dot"></div>
-          <!-- Dot for minutes -->
+              <!-- Dot for minutes -->
           <svg>
-            <!-- SVG for minutes -->
+              <!-- SVG for minutes -->
             <circle cx="100" cy="100" r="100" id="mm"></circle>
-            <!-- Circle element for minutes -->
+              <!-- Circle element for minutes -->
           </svg>
           <div class="circle-color color-min"></div>
-          <!-- Colored circle for minutes -->
+              <!-- Colored circle for minutes -->
         </div>
         <div class="circle" style="--clr: #fb296d">
-          <!-- Circle for hours -->
+              <!-- Circle for hours -->
           <div class="dots hr_dot"></div>
-          <!-- Dot for hours -->
+              <!-- Dot for hours -->
           <svg>
-            <!-- SVG for hours -->
+              <!-- SVG for hours -->
             <circle cx="80" cy="80" r="80" id="hh"></circle>
-            <!-- Circle element for hours -->
+              <!-- Circle element for hours -->
           </svg>
         </div>
-        <!-- Container for hours -->
+          <!-- Container for hours -->
       </div>
-      <!-- Container for time and date display -->
+        <!-- Container for time and date display -->
       <div id="time-display" class="time-display">
         <span id="current-time">00:00.00</span>
-        <!-- Display for current time -->
+          <!-- Display for current time -->
         <br /><span id="current-date">yy/dd/mm</span>
-        <!-- Display for current date -->
+          <!-- Display for current date -->
       </div>
     </div>
-    <!-- Header, filter popup, notes container, and scripts -->
     <div class="container">
-      <!-- Header section -->
-      <header class="header">
-        <!-- Search input container -->
-        <div class="search-input-container">
-          <!-- Magnifying glass icon for search -->
-          <i class="fa-solid fa-magnifying-glass search-icon"></i>
-          <!-- Search input field -->
-          <input
-            id="searchInput"
-            type="text"
-            placeholder="Search for your note ..."
-          />
-        </div>
-        <!-- Button to add an item -->
-        <button id="addItemButton">Add Item</button>
-        <!-- Button for filter with filter icon -->
-        <button id="filterButton">
-          <i class="fa-solid fa-filter filter-icon"></i>
-        </button>
-      </header>
-      <!-- The following HTML creates a popup element for filtering -->
-      <!-- The div element with id "filterPopup" and class "popup" represents the popup container -->
-      <div id="filterPopup" class="popup">
-        <!-- The p element contains the text "Filter by:" -->
-        <p>Filter by:</p>
-        <!-- The ul element represents an unordered list -->
-        <ul>
-          <!-- The first button element with id "sortAZButton" represents a button for sorting A-Z -->
-          <button id="sortAZButton">Sort A-Z</button>
-          <!-- The second button element with id "sortDateButton" represents a button for sorting by the latest date -->
-          <button id="sortDateButton">Sort by Latest Date</button>
-        </ul>
-      </div>
+        <!-- Header, filter popup, notes container, and scripts -->
+<!-- Header section -->
+<header class="header">
+
+<!-- Search input container -->
+<div class="search-input-container">
+  <!-- Magnifying glass icon for search -->
+  <i class="fa-solid fa-magnifying-glass search-icon"></i>
+  <!-- Search input field -->
+  <input id="searchInput" type="text" placeholder="Search for your note ..." />
+</div>
+
+<!-- Button to add an item -->
+<button id="addItemButton">Add Item</button>
+
+<!-- Button for filter with filter icon -->
+<button id="filterButton">
+  <i class="fa-solid fa-filter filter-icon"></i>
+</button>
+
+</header>
+
+    <div id="filterPopup" class="popup">
+      <p>Filter by:</p>
+      <ul>
+        <button id="sortAZButton">Sort A-Z</button>
+        <button id="sortDateButton">Sort by Latest Date</button>
+      </ul>
     </div>
+
     <div class="notes" id="notesContainer">
       <!-- Default notes will be dynamically populated here -->
     </div>
@@ -102,7 +92,9 @@
       src="https://kit.fontawesome.com/0f106f397a.js"
       crossorigin="anonymous"
     ></script>
+    
     <script src="JS/script.js"></script>
-    <script src="DragDropTouch.js"></script>
+  <script src="JS/DragDropTouch.js"></script>
+
   </body>
 </html>
