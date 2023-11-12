@@ -212,3 +212,10 @@ The SVG elements within each circle have a relative position and are rotated 270
   display: inline-block;
   transform: rotate(calc(-30deg * var(--i)));
 }
+
+/* making container and give style for mobile version */
+
+.container {
+  width: 955px;
+  margin: 0 auto;
+}
