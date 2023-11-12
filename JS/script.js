@@ -172,6 +172,19 @@ function sortNotesAZ() {
     renderNotes(defaultNotes);
 }
 
+// Function to sort notes based on date (ascending order)
+// Function to sort notes based on the highest date (descending order)
+function sortNotesByHighestDate() {
+    defaultNotes.sort((a, b) => {
+        const dateA = new Date(a.endTime);
+        const dateB = new Date(b.endTime);
+        return dateB - dateA; // Sort in descending order
+    });
+
+    // Render the sorted notes
+    renderNotes(defaultNotes);
+}
+
 
 
 
