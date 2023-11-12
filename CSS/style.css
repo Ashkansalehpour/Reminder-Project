@@ -308,3 +308,48 @@ The SVG elements within each circle have a relative position and are rotated 270
   margin-left: 21px;
   
 }
+/* Popup styles */
+.popup {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--popup-background);
+  color: var(--popup-text-color);
+  padding: 10px;
+  border-radius: var(--popup-border-radius);
+  z-index: 2;
+}
+
+/* Popup Show Styles */
+.popup.show {
+  width: var(--popup-width);
+  display: block;
+  position: absolute;
+  top: var(--popup-distance-top);
+  right: var(--popup-distance-right);
+  z-index: 2;
+  background-color: var(--popup-background);
+  color: var(--popup-text-color);
+  padding: 10px;
+  border-radius: var(--popup-border-radius);
+}
+/* Popup Paragraph Styles */
+.popup p {
+  padding: 10px;
+  margin: 0;
+  color: var(--popup-text-color);
+  font-size: 16px;
+}
+/* Popup List Styles */
+.popup ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popup ul li a {
+  text-decoration: none;
+  color: var(--popup-text-color);
+  font-size: 16px; /* Adjust font size for mobile */
+}
