@@ -160,6 +160,17 @@ function calculateRemainingTime(endTime) {
     }
 }
 
+// Function to sort notes based on title (A-Z)
+function sortNotesAZ() {
+    defaultNotes.sort((a, b) => {
+        const titleA = a.title.toUpperCase();
+        const titleB = b.title.toUpperCase();
+        return titleA < titleB ? -1 : titleA > titleB ? 1 : 0;
+    });
+
+    // Render the sorted notes
+    renderNotes(defaultNotes);
+}
 
 
 
