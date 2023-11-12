@@ -214,8 +214,15 @@ The SVG elements within each circle have a relative position and are rotated 270
 }
 
 /* making container and give style for mobile version */
-
 .container {
   width: 955px;
   margin: 0 auto;
+}
+/* Header styles for mobile */
+.header {
+  padding: 9px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: -27px;
 }
