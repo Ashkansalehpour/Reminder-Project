@@ -215,12 +215,12 @@ The SVG elements within each circle have a relative position and are rotated 270
 
 /* making container and give style for mobile version */
 .container {
-  width: 955px;
+  width: var(--container-width);
   margin: 0 auto;
 }
 /* Header styles for mobile */
 .header {
-  padding: 9px;
+  padding: var(--header-padding);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -231,19 +231,19 @@ The SVG elements within each circle have a relative position and are rotated 270
 #searchInput {
   width: 100%;
   padding: 10px 17px 0px 0px;
-  background-color: #333;
+  background-color: var(--search-input-background);
   margin: 10px 0;
   border-radius: 10px;
   outline: none;
   font-size: 16px;
   flex: 1; /* Allow the input to take available space */
   border: none;
-  color: #fff;
+  color: var(--text-color);
 }
 /* Search Input Placeholder Styles */
 #searchInput::placeholder {
-  font-size: 26px;
-  color: #585757;
+  color: var(--search-input-placeholder-color);
+  font-size: 16px;
 }
 /* Style for the search input container */
 .search-input-container {
@@ -251,7 +251,7 @@ The SVG elements within each circle have a relative position and are rotated 270
   display: flex; 
   /* Centers child elements along the cross axis. */
   align-items: center;
-  background-color: #333;
+  background-color: var(--search-input-background);
   border-radius: 10px;
   margin: 1px 0;
   padding: 0px;
@@ -263,27 +263,27 @@ The SVG elements within each circle have a relative position and are rotated 270
 /* Search Input Icon Styles (magnifier icon) */
 .search-input-container i {
   margin-left: 30px;
-  color: #585757;
+  color: var(--accent-color);
   font-size: 25px;
 }
 
 /* Style for the magnifying glass icon */
 .search-icon {
   font-size: 16px;
-  color: #fff;
+  color: var(--text-color);
   margin-right: 10px; /* Adjust the margin for spacing */
 } 
 /* Filter Icon Styles */
 .filter-icon {
   font-size: 16px;
-  color: #fff;
+  color: var(--text-color);
   margin-right: 10px; /* Adjust the margin for spacing */
 }
 
 /* Filter Button Styles */
 #filterButton {
-  background-color: transparent;
-  color: #333333;
+  background-color: var(--filter-button-background);
+  color: var(--filter-button-text-color);
   border: none;
   margin: 10px -60; /* Add margin to separate the buttons */
   border-radius: 10px;
