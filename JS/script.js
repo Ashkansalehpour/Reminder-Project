@@ -8,7 +8,6 @@ let defaultNotes = [
     { title: "Default Note 3", endTime: "2023-11-06T05:00:00Z", status: "active" }
 ];
 
-// Function to render notes
 function renderNotes(notes) {
     const notesContainer = document.getElementById("notesContainer");
     notesContainer.innerHTML = '';
@@ -36,8 +35,6 @@ function renderNotes(notes) {
         noteElement.addEventListener('dragover', handleDragOver);
         noteElement.addEventListener('drop', handleDrop);
         noteElement.addEventListener('dragend', handleDragEnd);
-
-        notesContainer.appendChild(noteElement);
 
         // Swipe gesture handling for deleting notes
         addSwipeGesture(noteElement, () => handleSwipeAndDelete(noteElement, index));
@@ -76,6 +73,25 @@ function addSwipeGesture(element, onSwipe) {
             onSwipe();
         }
     }, { passive: true }); // Add passive: true
+}
+
+
+// Function to handle swipe and delete
+function handleSwipeAndDelete(noteElement, index) {
+    // Add a class to the noteElement to trigger the slide-out animation
+    noteElement.classList.add('slide-out');
+
+    // Wait for the animation to finish
+    setTimeout(() => {
+        // Remove the noteElement from the DOM
+        noteElement.remove();
+
+        // Remove the note from the defaultNotes array
+        defaultNotes.splice(index, 1);
+
+        // Save the updated notes order to local storage
+        localStorage.setItem("notesOrder", JSON.stringify(defaultNotes));
+    }, 500); // Adjust the time to match the animation duration
 }
 
 // Load notes order from local storage or use default order
