@@ -38,7 +38,30 @@ function renderNotes(notes) {
         noteElement.addEventListener('dragend', handleDragEnd);
 
         notesContainer.appendChild(noteElement);
+
+        // Swipe gesture handling for deleting notes
+        addSwipeGesture(noteElement, () => handleSwipeAndDelete(noteElement, index));
+
+        notesContainer.appendChild(noteElement);
     });
+}
+
+// Function to add swipe gesture handling to an element
+function addSwipeGesture(element, onSwipe) {
+    let startX;
+
+    element.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    }, { passive: true }); // Add passive: true
+
+    element.addEventListener('touchend', (e) => {
+        const deltaX = e.changedTouches[0].clientX - startX;
+
+        if (deltaX < -50) {
+            // Swipe left detected
+            onSwipe();
+        }
+    }, { passive: true }); // Add passive: true
 }
 
 // Load notes order from local storage or use default order
