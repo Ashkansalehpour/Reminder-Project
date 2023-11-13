@@ -46,6 +46,20 @@ function renderNotes(notes) {
     });
 }
 
+// Function to delete a note element
+function deleteNoteElement(noteElement) {
+    noteElement.remove();
+
+    // Update the 'defaultNotes' array to reflect the new order.
+    const index = Array.from(noteElement.parentNode.children).indexOf(noteElement);
+    const updatedNotes = [...defaultNotes];
+    updatedNotes.splice(index, 1);
+
+    // Save the updated notes order to local storage
+    localStorage.setItem("notesOrder", JSON.stringify(updatedNotes));
+    defaultNotes = updatedNotes;
+}
+
 // Function to add swipe gesture handling to an element
 function addSwipeGesture(element, onSwipe) {
     let startX;

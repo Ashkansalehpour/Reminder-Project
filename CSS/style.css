@@ -444,3 +444,22 @@ input:checked + .small-label:after {
   width: 20px;
   height: 20px;
 }
+
+/* Note deleted animation */
+.note.slide-out {
+  animation: slideOut 0.5s ease-in-out;
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+/* Highlighted finding in Search bar  */
+.highlighted {
+  background-color: #6a6a6a;
+}
