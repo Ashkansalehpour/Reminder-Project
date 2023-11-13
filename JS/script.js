@@ -8,15 +8,29 @@ let defaultNotes = [
     { title: "Default Note 3", endTime: "2023-11-06T05:00:00Z", status: "active" }
 ];
 
+// Function to render notes on the UI
 function renderNotes(notes) {
+    // Get the container element where notes will be displayed
     const notesContainer = document.getElementById("notesContainer");
+
+    // Clear the existing content inside the container
     notesContainer.innerHTML = '';
 
+    // Iterate through each note in the 'notes' array
     notes.forEach((note, index) => {
+        // Create a new div element for each note
         const noteElement = document.createElement("div");
+
+        // Add the "note" class to the note element for styling
         noteElement.classList.add("note");
-        noteElement.draggable = true; // Make note divs draggable
+
+        // Make each note div draggable for drag-and-drop functionality
+        noteElement.draggable = true;
+
+        // Generate a unique ID for the checkbox associated with each note
         const uniqueId = `switch${index}`;
+
+        // Set the inner HTML content for the note element
         noteElement.innerHTML = `
             <div class="note-content">
                 <div class="left-content">
@@ -31,14 +45,16 @@ function renderNotes(notes) {
             </div>
         `;
 
+        // Add drag-and-drop event listeners to the note element
         noteElement.addEventListener('dragstart', handleDragStart);
         noteElement.addEventListener('dragover', handleDragOver);
         noteElement.addEventListener('drop', handleDrop);
         noteElement.addEventListener('dragend', handleDragEnd);
 
-        // Swipe gesture handling for deleting notes
+        // Add a swipe gesture handling for deleting notes
         addSwipeGesture(noteElement, () => handleSwipeAndDelete(noteElement, index));
 
+        // Append the note element to the notes container
         notesContainer.appendChild(noteElement);
     });
 }
