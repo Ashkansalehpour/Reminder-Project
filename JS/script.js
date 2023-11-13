@@ -41,23 +41,22 @@ function renderNotes(notes) {
     });
 }
 
-// Load notes from local storage or use default notes
-let loadedNotes = localStorage.getItem("notes");
-let notes;
+// Load notes order from local storage or use default order
+document.addEventListener("DOMContentLoaded", function () {
+    let loadedNotesOrder = localStorage.getItem("notesOrder");
+    let notesOrder;
 
-if (loadedNotes) {
-    // If notes exist in local storage, use them
-    notes = JSON.parse(loadedNotes);
-} else {
-    // If no notes in local storage, use default notes
-    notes = defaultNotes;
+    if (loadedNotesOrder) {
+        // If notes order exists in local storage, use it
+        notesOrder = JSON.parse(loadedNotesOrder);
+    } else {
+        // If no notes order in local storage, use default order
+        notesOrder = defaultNotes;
+    }
 
-    // Save default notes to local storage
-    localStorage.setItem("notes", JSON.stringify(defaultNotes));
-}
-
-// Render the notes
-renderNotes(notes);
+    // Render the notes based on the order
+    renderNotes(notesOrder);
+});
 
 // Define the event handlers for drag-and-drop
 let dragSrcElement = null;
@@ -216,12 +215,15 @@ function updateNotesBySearch(keyword) {
     });
 }
 
+
+
 // Event listener for the search input
 document.getElementById("searchInput").addEventListener("input", function () {
     const searchInput = this.value.trim();
     updateNotesBySearch(searchInput);
 });
 
+//clock script
 //* This code sets up a timer using setInterval to repeatedly execute the code inside the arrow function every 1000 milliseconds (1 second).
 
 //* This creates a continuous update for the clock, ensuring that the displayed time is always current.
