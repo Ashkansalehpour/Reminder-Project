@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>calender</title>
-    <link rel="stylesheet" href="time-picker.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="calender.css">
 </head>
+
 <body>
-    <!-- container for calnder -->
+    <div class="timeDate-container">
+
+
       <div class="container">
-      <!-- calneder div -->
+      
         <div class="calendar">
-          <!-- div for months -->
           <div class="month">
-            <!-- add prev and next icon for change the months -->
             <i class="prev"><</i>
             <div class="date">december 2015</div>
             <i class=" next">></i>
           </div>
-          <!-- div for weekdays -->
           <div class="weekdays">
             <div>Sun</div>
             <div>Mon</div>
@@ -29,16 +30,12 @@
             <div>Fri</div>
             <div>Sat</div>
           </div>
-          <!-- div for days that we add days in js -->
           <div class="days"></div>
-          <!-- div for 2 input to make search easier -->
           <div class="goto-today">
             <div class="goto">
-              <!-- input for search about what date you want to select -->
               <input type="text" placeholder="mm/yyyy" class="date-input" />
               <button class="goto-btn">Go</button>
             </div>
-            <!-- this button help you to find today date -->
             <button class="today-btn">Today</button>
           </div>
         
@@ -46,6 +43,33 @@
 
     </div>
 
+
+    
+        <!-- ----------------------- -->
+    <div class="picker">
+        <div class="picker-window"></div>
+        <ul class="PMAM">
+            <li>PM</li>
+            <li>AM</li>
+        </ul>
+        <ul class="picker-hour">
+  
+        </ul>
+        <ul class="picker-minute">
+     
+        </ul>
+    </div>
+
+    <!-- ----------------------- -->
+  
+      <button class="save-btn">save time</button>
+
+    <button class="off-btn" >off</button>
+</div>
+  
+
     <script src="app2.js"></script>
+    <script src="../calender/script.js"></script>
 </body>
+
 </html>
