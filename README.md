@@ -1,8 +1,24 @@
 # Reminder-Project
 
 ## description
-> - a project that you can set yor plans and your plans will be hereand you will set it im our project
+> -This project provides a customizable calendar with event handling, a time picker interface, and alarm functionality. It's built using HTML, CSS, and JavaScript.
 - [USE NOW]()
+
+## Features
+
+- **Calendar:**
+  - Navigate between months.
+  - Highlight the current day.
+  - Display events on specific dates.
+    
+- **Time Picker:**
+  - Select hours, minutes, and AM/PM.
+  - Save selected time and set alarms.
+    
+- **Alarm Functionality:**
+  - Check and log if the current time matches the selected alarm time.
+  - Turn off the alarm to prevent triggering.
+    
 ## Contributors 
 - Ashkan Salehpour
   - Email-address : **ashkanspdev@gmail.com**
