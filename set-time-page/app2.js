@@ -1,19 +1,28 @@
 // Alireza Ahmadi
 // email : Ahmadialireza@gmail.com
+// select calender
 const calendar = document.querySelector(".calendar"),
+  // select date
   date = document.querySelector(".date"),
+  // select days
   daysContainer = document.querySelector(".days"),
+  // select prev and next icon
   prev = document.querySelector(".prev"),
   next = document.querySelector(".next"),
+  // select today btn and goto btn
   todayBtn = document.querySelector(".today-btn"),
   gotoBtn = document.querySelector(".goto-btn"),
+  // select date input
   dateInput = document.querySelector(".date-input");
-
+// make today to nowday
 let today = new Date();
+// create active day
 let activeDay;
+// create month by selecting
 let month = today.getMonth();
+// create year by selecting
 let year = today.getFullYear();
-
+// add name  months of year to array
 const months = [
   "January",
   "February",
@@ -31,38 +40,53 @@ const months = [
 
 //function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
 function initCalendar() {
+  // make first day of calender
   const firstDay = new Date(year, month, 1);
+  // make last day of calender
   const lastDay = new Date(year, month + 1, 0);
+  // make prev day and last date of calender
   const prevDays = firstDay.getDay();
   const lastDate = lastDay.getDate();
+  // inner html month and year
   date.innerHTML = months[month] + " " + year;
 
   let days = "";
+  // The loop will iterate till 'prevDays' counter.
+  // 'prevDays' is presumably containing the number of days from the previous month that should be displayed on the current month's calendar view.
+  // Within the loop, for each iteration, an empty day div (styled as a date from the previous month) is concatenated to the 'days' string.
 
   for (let i = 0; i < prevDays; i++) {
     days += `<div class="day prev-date"></div>`;
   }
 
-  for (let i = 1; i <= lastDate; i++) {
-    if (
-      i === new Date().getDate() &&
-      year === new Date().getFullYear() &&
-      month === new Date().getMonth()
-    ) {
+// The 'for' loop is iterating through each day of the month. Here, 'lastDate' is assumed to be the last day of the month.
+
+for (let i = 1; i <= lastDate; i++) {
+  // With 'new Date()' we get the current date, and through 'getDate()', 'getFullYear()', and 'getMonth()' methods we retrieve the day, year, and month respectively.
+  // If the iterated day (i), year and month are equal to today's date, we are looking at the 'today' date on the calendar.
+  if (
+    i === new Date().getDate() &&
+    year === new Date().getFullYear() &&
+    month === new Date().getMonth()
+  ) {
+      // Set 'activeDay' as 'i' (the current date)
       activeDay = i;
+      // If there's an event on today's date, append a 'div' for the date with 'today', 'active', and 'event' classes, else mark it as 'today' and 'active' only.
       if (event) {
-        days += `<div class="day today active event" date-value="${i}">${i}</div>`;
+          days += `<div class="day today active event" date-value="${i}">${i}</div>`;
       } else {
-        days += `<div class="day today active" date-value="${i}">${i}</div>`;
+          days += `<div class="day today active" date-value="${i}">${i}</div>`;
       }
-    } else {
+  } else {
+      // For all other dates, if an event exists, append a 'div' for the date with an 'event' class else append a 'div' only with 'day' class.
       if (event) {
-        days += `<div class="day event" date-value="${i}">${i}</div>`;
+          days += `<div class="day event" date-value="${i}">${i}</div>`;
       } else {
-        days += `<div class="day" date-value="${i}">${i}</div>`;
+          days += `<div class="day" date-value="${i}">${i}</div>`;
       }
-    }
   }
+}
+// At the end, 'days' string contains markup for each day of the month with appropriate classes.
 
   daysContainer.innerHTML = days;
   addListener();
@@ -70,58 +94,73 @@ function initCalendar() {
 
 //function to add month and year on prev and next button
 
+// The function 'prevMonth' is handling the transition to the previous month.
 function prevMonth() {
+  // The current month is decreased by one
   month--;
+  // If the current month is below 0 (below January), it means we need to switch to the previous year
   if (month < 0) {
+    // We switch to December (month 11)
     month = 11;
+    // And decrease the year by one
     year--;
   }
+  // After changing the month and possibly the year, we initialize the calendar to reflect these changes
   initCalendar();
 }
 
+// The function 'nextMonth' is handling the transition to the next month.
 function nextMonth() {
+  // The current month is increased by one
   month++;
+  // If the current month is above 11 (December), it means we need to switch to the next year
   if (month > 11) {
+    // We switch to January (month 0)
     month = 0;
+    // And increase the year by one
     year++;
-  }
-  initCalendar();
-}
-
-prev.addEventListener("click", prevMonth);
-next.addEventListener("click", nextMonth);
-
-initCalendar();
+  }}
+  // After changing the month and possibly the year, we initialize the calendar to reflect these changes
+  initCalendar()
 
 //function to add active on day
+// The 'addListener' function is used to add event listeners to the DOM elements with the class '.day'
 function addListener() {
+  // Selecting all the days using querySelectorAll method
   const days = document.querySelectorAll(".day");
+  // Using forEach loop to add event listener to each day
   days.forEach((day) => {
+    // Adding 'click' event listener to each day
     day.addEventListener("click", (e) => {
+      // Creating a date object 'selectedDate' for the day user clicked
       const selectedDate = new Date(year, month, Number(e.target.innerHTML));
+      // Creating a date object 'currentDate' for the current day
       const currentDate = new Date();
       const clickedMonth = month;
 
-      // send selectedDate out of function
+      // Assign the selectedDate to 'getDate' variable for later use
       getDate = selectedDate;
 
       console.log(getDate);
+      // Check if the selectedDate is in future
       if (selectedDate > currentDate) {
-        // If the selected date is in the future, calculate days remaining
+        // If it's in future, calculate the remaining days and assign it to 'remainingDay'
         const daysRemaining = Math.ceil(
           (selectedDate - currentDate) / (1000 * 60 * 60 * 24)
         );
         remainingDay = daysRemaining;
         console.log(`Days remaining: ${selectedDate}`);
       } else if (selectedDate.toDateString() === currentDate.toDateString()) {
-        // If the selected date is the current date, check if it's the end of the day
+        // Check if the selected day is the current day
+        // If so, calculate the remaining hours and minutes and print them
         const endOfDay = new Date(currentDate);
         endOfDay.setHours(23, 59, 59); // Set it to the end of the day
 
+        // Check if the selected date has past or if it's in future
         if (selectedDate >= endOfDay) {
           alert("Time remaining today: 0 hours, 0 minutes");
         } else {
-          // Calculate remaining time in hours and minutes
+          // Calculate remaining hours and minutes today
           const remainingTime = new Date(endOfDay - currentDate);
           const hoursRemaining = remainingTime.getUTCHours();
           const minutesRemaining = remainingTime.getUTCMinutes();
@@ -131,80 +170,13 @@ function addListener() {
           );
         }
       } else {
-        // Show an alert for selecting a past date
+        // If the selected day is in past, print alert and remove the 'active' class
         alert("Please select a date in the future.");
         e.target.classList.remove("active");
       }
     });
   });
 }
-
-// console.log(selectedDate)
-
-
-
-todayBtn.addEventListener("click", () => {
-  today = new Date();
-  month = today.getMonth();
-  year = today.getFullYear();
-  initCalendar();
-});
-
-dateInput.addEventListener("input", (e) => {
-  dateInput.value = dateInput.value.replace(/[^0-9/]/g, "");
-  if (dateInput.value.length === 2) {
-    dateInput.value += "/";
-  }
-  if (dateInput.value.length > 7) {
-    dateInput.value = dateInput.value.slice(0, 7);
-  }
-  if (e.inputType === "deleteContentBackward") {
-    if (dateInput.value.length === 3) {
-      dateInput.value = dateInput.value.slice(0, 2);
-    }
-  }
-});
-
-gotoBtn.addEventListener("click", gotoDate);
-
-function gotoDate() {
-  console.log("here");
-  const dateArr = dateInput.value.split("/");
-  if (dateArr.length === 2) {
-    if (dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length === 4) {
-      month = dateArr[0] - 1;
-      year = dateArr[1];
-      initCalendar();
-      return;
-    }
-  }
-  alert("Invalid Date");
-}
-
-let div = document.createElement("div").classList.add("day");
-
-daysContainer.addEventListener("click", (e) => {
-  let div = e.target;
-  if (div.classList.contains("day")) {
-    const clickedDate = div.getAttribute("date-value");
-    const clickedYear = year;
-    const clickedMonth = month;
-    const clickedDay = parseInt(clickedDate, 10);
-
-    // Calculate the number of days remaining
-    const selectedDate = new Date(clickedYear, clickedMonth, clickedDay);
-    const currentDate = new Date();
-
-    if (selectedDate >= currentDate) {
-      const daysRemaining = Math.ceil(
-        (selectedDate - currentDate) / (1000 * 60 * 60 * 24)
-      );
-    } else {
-      alert("Please select a date in the future.");
-      div.classList.remove("active");
-    }
-  }
-});
 
 
 
