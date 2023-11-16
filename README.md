@@ -32,5 +32,5 @@
 > - this project is mobile first too, but need leter work:)
 > - we are working on desktop form, if you want join us for make it:)
 ## Figma and Trello links
-- Trello-address : ****
+- Trello-address : **https://trello.com/invite/b/7Fw2HlLg/ATTI9c5e58b3542ff125a66089d10014a1fc5251A1BB/devrocket**
 - Figma-address : **https://www.figma.com/file/oNI0MTeqtuzYBzWb3zRRz8/megademy-challenge?type=design&node-id=0%3A1&mode=design&t=JHw5J3mOvgmdHEE9-1**
