@@ -1,217 +1,400 @@
-const description = document.querySelector("#Description-alarm .title-input");
-const textarea = document.querySelector("#Description-alarm textarea");
-document.addEventListener("DOMContentLoaded", function () {
-  const title = document.querySelector(".title");
-  const perv = document.querySelector(".perv");
-  const playPause = document.querySelector(".playPause");
-  const next = document.querySelector(".next");
-  const audio = document.querySelector(".audio");
-  const body = document.querySelector("body");
+// Alireza Ahmadi
+// email : Ahmadialireza@gmail.com
+// select calender
+const calendar = document.querySelector(".calendar"),
+  // select date
+  date = document.querySelector(".date"),
+  // select days
+  daysContainer = document.querySelector(".days"),
+  // select prev and next icon
+  prev = document.querySelector(".prev"),
+  next = document.querySelector(".next"),
+  // select today btn and goto btn
+  todayBtn = document.querySelector(".today-btn"),
+  gotoBtn = document.querySelector(".goto-btn"),
+  // select date input
+  dateInput = document.querySelector(".date-input");
+// make today to nowday
+let today = new Date();
+// create active day
+let activeDay;
+// create month by selecting
+let month = today.getMonth();
+// create year by selecting
+let year = today.getFullYear();
+// add name  months of year to array
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
-  // song list
-  const songList = [
-    {
-      path: "", // masire Audio
-      songName: "", //Esm Alarm
-    },
-    {
-      path: "", // masire Audio
-      songName: "", //Esm Alarm
-    },
-    {
-      path: "", // masire Audio
-      songName: "", //Esm Alarm
-    },
-  ];
+//function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
+function initCalendar() {
+  // make first day of calender
+  const firstDay = new Date(year, month, 1);
+  // make last day of calender
+  const lastDay = new Date(year, month + 1, 0);
+  // make prev day and last date of calender
+  const prevDays = firstDay.getDay();
+  const lastDate = lastDay.getDate();
+  // inner html month and year
+  date.innerHTML = months[month] + " " + year;
 
-  let song_Playing = false;
+  let days = "";
+  // The loop will iterate till 'prevDays' counter.
+  // 'prevDays' is presumably containing the number of days from the previous month that should be displayed on the current month's calendar view.
+  // Within the loop, for each iteration, an empty day div (styled as a date from the previous month) is concatenated to the 'days' string.
 
-  // plays song
-  function playSong() {
-    song_Playing = true;
-    audio.play();
-    playPause.classList.add("active");
-    // change icon
-    playPause.innerHTML = '<ion-icon name="pause-outline"></ion-icon>';
+  for (let i = 0; i < prevDays; i++) {
+    days += `<div class="day prev-date"></div>`;
   }
 
-  // pause song
-  function pauseSong() {
-    song_Playing = false;
-    audio.pause();
-    playPause.classList.remove("active");
-    // change icon
-    playPause.innerHTML = '<ion-icon name="play-outline"></ion-icon>';
-  }
+// The 'for' loop is iterating through each day of the month. Here, 'lastDate' is assumed to be the last day of the month.
 
-  // play or pause song on click
-  playPause.addEventListener("click", () =>
-    song_Playing ? pauseSong() : playSong()
+for (let i = 1; i <= lastDate; i++) {
+  // With 'new Date()' we get the current date, and through 'getDate()', 'getFullYear()', and 'getMonth()' methods we retrieve the day, year, and month respectively.
+  // If the iterated day (i), year and month are equal to today's date, we are looking at the 'today' date on the calendar.
+  if (
+    i === new Date().getDate() &&
+    year === new Date().getFullYear() &&
+    month === new Date().getMonth()
+  ) {
+      // Set 'activeDay' as 'i' (the current date)
+      activeDay = i;
+      // If there's an event on today's date, append a 'div' for the date with 'today', 'active', and 'event' classes, else mark it as 'today' and 'active' only.
+      if (event) {
+          days += `<div class="day today active event" date-value="${i}">${i}</div>`;
+      } else {
+          days += `<div class="day today active" date-value="${i}">${i}</div>`;
+      }
+  } else {
+      // For all other dates, if an event exists, append a 'div' for the date with an 'event' class else append a 'div' only with 'day' class.
+      if (event) {
+          days += `<div class="day event" date-value="${i}">${i}</div>`;
+      } else {
+          days += `<div class="day" date-value="${i}">${i}</div>`;
+      }
+  }
+}
+// At the end, 'days' string contains markup for each day of the month with appropriate classes.
+
+  daysContainer.innerHTML = days;
+  addListener();
+}
+
+//function to add month and year on prev and next button
+
+// The function 'prevMonth' is handling the transition to the previous month.
+function prevMonth() {
+  // The current month is decreased by one
+  month--;
+  // If the current month is below 0 (below January), it means we need to switch to the previous year
+  if (month < 0) {
+    // We switch to December (month 11)
+    month = 11;
+    // And decrease the year by one
+    year--;
+  }
+  // After changing the month and possibly the year, we initialize the calendar to reflect these changes
+  initCalendar();
+}
+
+// The function 'nextMonth' is handling the transition to the next month.
+function nextMonth() {
+  // The current month is increased by one
+  month++;
+  // If the current month is above 11 (December), it means we need to switch to the next year
+  if (month > 11) {
+    // We switch to January (month 0)
+    month = 0;
+    // And increase the year by one
+    year++;
+  }}
+  // After changing the month and possibly the year, we initialize the calendar to reflect these changes
+  initCalendar()
+
+//function to add active on day
+// The 'addListener' function is used to add event listeners to the DOM elements with the class '.day'
+function addListener() {
+  // Selecting all the days using querySelectorAll method
+  const days = document.querySelectorAll(".day");
+  // Using forEach loop to add event listener to each day
+  days.forEach((day) => {
+    // Adding 'click' event listener to each day
+    day.addEventListener("click", (e) => {
+      // Creating a date object 'selectedDate' for the day user clicked
+      const selectedDate = new Date(year, month, Number(e.target.innerHTML));
+      // Creating a date object 'currentDate' for the current day
+      const currentDate = new Date();
+      const clickedMonth = month;
+
+      // Assign the selectedDate to 'getDate' variable for later use
+      getDate = selectedDate;
+
+      console.log(getDate);
+      // Check if the selectedDate is in future
+      if (selectedDate > currentDate) {
+        // If it's in future, calculate the remaining days and assign it to 'remainingDay'
+        const daysRemaining = Math.ceil(
+          (selectedDate - currentDate) / (1000 * 60 * 60 * 24)
+        );
+        remainingDay = daysRemaining;
+        console.log(`Days remaining: ${selectedDate}`);
+      } else if (selectedDate.toDateString() === currentDate.toDateString()) {
+        // Check if the selected day is the current day
+        // If so, calculate the remaining hours and minutes and print them
+        const endOfDay = new Date(currentDate);
+        endOfDay.setHours(23, 59, 59); // Set it to the end of the day
+
+        // Check if the selected date has past or if it's in future
+        if (selectedDate >= endOfDay) {
+          alert("Time remaining today: 0 hours, 0 minutes");
+        } else {
+          // Calculate remaining hours and minutes today
+          const remainingTime = new Date(endOfDay - currentDate);
+          const hoursRemaining = remainingTime.getUTCHours();
+          const minutesRemaining = remainingTime.getUTCMinutes();
+
+          console.log(
+            `Time remaining today: ${hoursRemaining} hours, ${minutesRemaining} minutes`
+          );
+        }
+      } else {
+        // If the selected day is in past, print alert and remove the 'active' class
+        alert("Please select a date in the future.");
+        e.target.classList.remove("active");
+      }
+    });
+  });
+}
+
+
+
+
+// Alireza zeynabi
+// email : Zeynabialireza@gmail.com
+// ----------------------------------------------------
+const houre = document.querySelector(".picker-hour");
+const minute = document.querySelector(".picker-minute");
+const pmAm = document.querySelector(".PMAM");
+const pickerWindow = document.querySelector(".picker-window");
+// create li for houres and minutes
+
+for (let i = 1; i <= 12; i++) {
+  const houreLi = document.createElement("li");
+  houre.appendChild(houreLi);
+
+  if (i < 10) {
+    houreLi.innerHTML = "0" + [i];
+  } else {
+    houreLi.innerHTML = [i];
+  }
+}
+
+for (let i = 0; i <= 59; i++) {
+  const minuteLi = document.createElement("li");
+  minute.appendChild(minuteLi);
+
+  if (i < 10) {
+    minuteLi.innerHTML = "0" + [i];
+  } else {
+    minuteLi.innerHTML = [i];
+  }
+}
+// ------------------------------------
+
+// Select hour list items
+const houreLi = houre.querySelectorAll("li");
+// Select minute list items
+const minuteLi = minute.querySelectorAll("li");
+// Select PMAM list items
+const pmamLi = pmAm.querySelectorAll("li");
+
+const saveBtn = document.querySelector(".save-btn");
+
+saveBtn.addEventListener("click", (e) => {
+  const hourScrollPosition = houre.scrollTop;
+  const minuteScrollPosition = minute.scrollTop;
+  const pmAmScrollPosition = pmAm.scrollTop;
+
+  const selectedHourIndex = Math.floor(
+    hourScrollPosition / houreLi[0].offsetHeight
   );
+  let selectedHour = houreLi[selectedHourIndex].innerHTML;
 
-  // load song
-  function loadSong(song) {
-    // title.textContent = song.songName;
-    audio.src = song.path;
+  const selectedMinuteIndex = Math.floor(
+    minuteScrollPosition / minuteLi[0].offsetHeight
+  );
+  const selectedMinute = minuteLi[selectedMinuteIndex].innerHTML;
+
+  const selectPmamIndex = Math.floor(
+    pmAmScrollPosition / pmamLi[0].offsetHeight
+  );
+  const selectPmam = pmamLi[selectPmamIndex].innerHTML;
+
+  //   console.log(`Selected Time: ${selectedHour}:${selectedMinute} ${selectPmam}`);
+
+  if (selectPmam == "PM") {
+    selectedHour = (parseInt(selectedHour) + 12).toString();
+    remainingTime()
   }
 
-  // current song
-  let i = 0;
-  // on load - select the first song from the song list
-  loadSong(songList[i]);
+  let setStatus = "noSet";
 
-  // previous song
-  function prevSong() {
-    i--;
-    if (i < 0) {
-      i = songList.length - 1;
-    }
-    loadSong(songList[i]);
-    playSong();
-  }
-
-  perv.addEventListener("click", prevSong);
-
-  // next song
-  function nextSong() {
-    i++;
-    if (i > songList.length - 1) {
-      i = 0;
-    }
-    loadSong(songList[i]);
-    playSong();
-  }
-
-  next.addEventListener("click", nextSong);
-  const rimTimes = JSON.parse(localStorage.getItem('rimTimes'));
-
-  /*
-
-
-
-  */
-  // Update spans with retrieved values
-  // gereftan az HTML
-  const daySpan = document.querySelector('.days');
-  const hoursSpan = document.querySelector('.hours');
-  const minutesSpan = document.querySelector('.minutes');
-
-
-  if (rimTimes) {
-    daySpan.textContent = rimTimes.remainingDay ;
-    hoursSpan.textContent = rimTimes.remainingHoure;
-    minutesSpan.textContent = rimTimes.remainingMinute;
-  }
-
-
+  pushTime(
+    parseInt(selectedHour),
+    parseInt(selectedMinute),
+    selectPmam,
+    setStatus
+  );
 });
 
-function addToLS(descTitle, text) {
-  descTitle = descTitle;
-  text = text;
+let getDate;
 
-  let localStorage = {
-    text: textarea.value,
-    title: description.value,
+if (getDate == undefined) {
+  getDate = new Date();
+}
+
+getDate = `${getDate.getDate()} ${
+  getDate.getMonth() + 1
+} ${getDate.getFullYear()}`;
+
+// بازیابی مقدار lastTimeData از localStorage
+let lastTimeData = JSON.parse(localStorage.getItem("lastTimeData"));
+
+// اگر اطلاعات در localStorage موجود نباشد، مقدار اولیه را با مقدار خالی تنظیم کنید
+if (!lastTimeData) {
+  lastTimeData = {};
+}
+
+function pushTime(h, m, p, setStatus) {
+  let timeData = {
+    hours: h,
+    minutes: m,
+    period: p,
+    setStatus: setStatus,
+    days: getDate,
   };
-  window.localStorage.setItem("localStorage", JSON.stringify(localStorage));
-  let newObject = window.localStorage.getItem("localStorage");
-  let json = JSON.parse(newObject);
+
+  lastTimeData = timeData;
+
+  // console.log("Last Selected Time:");
+  // console.log(lastTimeData);
+
+  // ذخیره lastTimeData در localStorage
+  localStorage.setItem("lastTimeData", JSON.stringify(lastTimeData));
 }
-addToLS(description, textarea);
 
-// timer js
-let animationFrameId;
-let totalMilliseconds;
-let elapsedTime = 0;
-function startTimer() {
-  const secondsInput = parseInt(document.getElementById("seconds").value) || 0;
-  const minutesInput = parseInt(document.getElementById("minutes").value) || 0;
-  const hoursInput = parseInt(document.getElementById("hours").value) || 0;
-  const timerPercentage = document.querySelector(".timer-percentage");
+setInterval(() => {
+  const currentTime = new Date();
+  const currentDay = `${currentTime.getDate()} ${
+    currentTime.getMonth() + 1
+  } ${currentTime.getFullYear()}`;
+  const currentHours = currentTime.getHours();
+  const currentMinutes = currentTime.getMinutes();
 
-  totalMilliseconds =
-    (hoursInput * 3600 + minutesInput * 60 + secondsInput) * 1000;
-
-  if (animationFrameId) {
-    cancelAnimationFrame(animationFrameId);
+  if (
+    lastTimeData.hours === currentHours &&
+    lastTimeData.minutes === currentMinutes &&
+    lastTimeData.days === currentDay &&
+    lastTimeData.setStatus == "noSet"
+  ) {
+    console.log("on");
   }
+}, 1000);
 
-  elapsedTime = 0;
-  timerPercentage.textContent = "0%";
-  timerPercentage.style.color = "white";
-  applyStylesAndAnimations(hoursInput, minutesInput, secondsInput);
-  updateClock(totalMilliseconds, timerPercentage);
+// // turn off alarm btn
+// const offBtn = document.querySelector(".off-btn");
+
+// offBtn.addEventListener("click", () => {
+//   lastTimeData.setStatus = "set";
+//   // console.log(lastTimeData)
+// });
+
+let remainingDay;
+if (remainingDay == undefined) {
+  remainingDay = 0;
 }
 
-function applyStylesAndAnimations(hoursInput, minutesInput, secondsInput) {
-  // Calculate the animation duration for each ring and dot
-  const circles = document.querySelectorAll(".circle");
-  const secCircle = circles[0];
-  const minCircle = circles[1];
-  const hrCircle = circles[2];
+// console.log(remainingDay);
+let rimTimes;
 
-  // Calculate the total time in seconds
-  const totalSeconds = hoursInput * 3600 + minutesInput * 60 + secondsInput;
+function remainingTime() {
 
-  // Calculate the animation durations for dots
-  const secAnimDuration = totalSeconds * 1000;
-  const minAnimDuration = totalSeconds * 1000;
-  const hrAnimDuration = totalSeconds * 1000;
+  setInterval(() => {
+    let rimDay = remainingDay;
 
-  // Set custom properties for animation durations
-  secCircle.style.setProperty("--sec-anim-duration", `${secAnimDuration}ms`);
-  minCircle.style.setProperty("--min-anim-duration", `${minAnimDuration}ms`);
-  hrCircle.style.setProperty("--hr-anim-duration", `${hrAnimDuration}ms`);
-
-  // Apply styles and animations to each circle
-  secCircle.querySelector("circle").style.strokeDasharray = "780";
-  secCircle.querySelector("circle").style.strokeDashoffset = "710";
-  secCircle.querySelector(
-    "circle"
-  ).style.animation = `rotateCounterClockwise ${secAnimDuration}ms linear infinite`;
-
-  minCircle.querySelector("circle").style.strokeDasharray = "760";
-  minCircle.querySelector("circle").style.strokeDashoffset = "0";
-  minCircle.querySelector(
-    "circle"
-  ).style.animation = `rotateCounterClockwise ${minAnimDuration}ms linear infinite`;
-
-  hrCircle.querySelector("circle").style.strokeDasharray = "43200"; // 12 hours (360 degrees)
-  hrCircle.querySelector("circle").style.strokeDashoffset = "0"; // Start with a full circle
-  hrCircle.querySelector(
-    "circle"
-  ).style.animation = `rotateCounterClockwise ${hrAnimDuration}ms linear infinite`;
-}
-
-function updateClock(totalMilliseconds, timerPercentage) {
-  const currentTime = performance.now();
-  elapsedTime = currentTime;
-
-  if (elapsedTime >= totalMilliseconds) {
-    // Timer is up
-    timerPercentage.textContent = "100%";
-
-    // Stop the animations and set the circles to completed state
-    const circles = document.querySelectorAll(".circle");
-    for (const circle of circles) {
-      circle.querySelector("circle").style.animation = "none";
-      circle.querySelector("circle").style.strokeDashoffset = "0";
+    let rimHouer = lastTimeData.hours - new Date().getHours();
+    let rimMinute = lastTimeData.minutes - new Date().getMinutes();
+  
+    if (rimMinute < 0) {
+      rimHouer--;
+      rimMinute = 60 + rimMinute;
     }
+    // -------------------------inja validation ------------------------//
+    if (rimHouer < 0) {
+      rimDay--;
+      rimHouer = 24 + rimHouer;
+    }
+    if(rimDay < 0 ){
+      rimDay = 0
+    }
+    if(lastTimeData.period == "AM"){
+      rimHouer - 9
+    }
+    console.log(`${rimDay} : ${rimHouer} : ${rimMinute}`);
+  
+    let saveRims = {
+      remainingDay :rimDay,
+      remainingHoure : rimHouer,
+      remainingMinute : rimMinute ,
+    }
+  
+    rimTimes = saveRims
+  
+    console.log(rimTimes)
 
-    return;
-  }
+    localStorage.setItem("rimTimes", JSON.stringify(rimTimes));
+  }, 1000);
+ 
+}
+// ----------------------------
+// ----------------------------
+// ----------------------------
 
-  // Calculate and display the percentage
-  const percentage = (elapsedTime / totalMilliseconds) * 100;
-  timerPercentage.textContent = percentage.toFixed(2) + "%";
 
-  applyStylesAndAnimations();
 
-  animationFrameId = requestAnimationFrame(() =>
-    updateClock(totalMilliseconds, timerPercentage)
-  );
+
+
+//  sohw setTime page
+
+let editTimeBox = document.querySelector('#edit-time-box')
+let timeDateContainer = document.querySelector('.timeDate-container')
+let coloseBtn = document.querySelector('.close-icon')
+let blurCover = document.querySelector('.blur-cover')
+let closeListBtn = document.querySelector('.close-list-btn')
+let ringtonBox = document.querySelector('#rington-box')
+let ringtonList = document.querySelector('.rington-list')
+
+ringtonBox.addEventListener('click',showRingtonList)
+closeListBtn.addEventListener('click',closeRingList)
+
+function showRingtonList() {
+  ringtonList.style = 'display:flex'
+  blurCover.style = 'display:block'
 }
 
-// Start the timer initially
-startTimer();
+function closeRingList () {
+  ringtonList.style = 'display: none'
+  blurCover.style = 'display:none'
+}
