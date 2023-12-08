@@ -59,34 +59,34 @@ function initCalendar() {
     days += `<div class="day prev-date"></div>`;
   }
 
-// The 'for' loop is iterating through each day of the month. Here, 'lastDate' is assumed to be the last day of the month.
+  // The 'for' loop is iterating through each day of the month. Here, 'lastDate' is assumed to be the last day of the month.
 
-for (let i = 1; i <= lastDate; i++) {
-  // With 'new Date()' we get the current date, and through 'getDate()', 'getFullYear()', and 'getMonth()' methods we retrieve the day, year, and month respectively.
-  // If the iterated day (i), year and month are equal to today's date, we are looking at the 'today' date on the calendar.
-  if (
-    i === new Date().getDate() &&
-    year === new Date().getFullYear() &&
-    month === new Date().getMonth()
-  ) {
+  for (let i = 1; i <= lastDate; i++) {
+    // With 'new Date()' we get the current date, and through 'getDate()', 'getFullYear()', and 'getMonth()' methods we retrieve the day, year, and month respectively.
+    // If the iterated day (i), year and month are equal to today's date, we are looking at the 'today' date on the calendar.
+    if (
+      i === new Date().getDate() &&
+      year === new Date().getFullYear() &&
+      month === new Date().getMonth()
+    ) {
       // Set 'activeDay' as 'i' (the current date)
       activeDay = i;
       // If there's an event on today's date, append a 'div' for the date with 'today', 'active', and 'event' classes, else mark it as 'today' and 'active' only.
       if (event) {
-          days += `<div class="day today active event" date-value="${i}">${i}</div>`;
+        days += `<div class="day today active event" date-value="${i}">${i}</div>`;
       } else {
-          days += `<div class="day today active" date-value="${i}">${i}</div>`;
+        days += `<div class="day today active" date-value="${i}">${i}</div>`;
       }
-  } else {
+    } else {
       // For all other dates, if an event exists, append a 'div' for the date with an 'event' class else append a 'div' only with 'day' class.
       if (event) {
-          days += `<div class="day event" date-value="${i}">${i}</div>`;
+        days += `<div class="day event" date-value="${i}">${i}</div>`;
       } else {
-          days += `<div class="day" date-value="${i}">${i}</div>`;
+        days += `<div class="day" date-value="${i}">${i}</div>`;
       }
+    }
   }
-}
-// At the end, 'days' string contains markup for each day of the month with appropriate classes.
+  // At the end, 'days' string contains markup for each day of the month with appropriate classes.
 
   daysContainer.innerHTML = days;
   addListener();
@@ -119,9 +119,10 @@ function nextMonth() {
     month = 0;
     // And increase the year by one
     year++;
-  }}
-  // After changing the month and possibly the year, we initialize the calendar to reflect these changes
-  initCalendar()
+  }
+}
+// After changing the month and possibly the year, we initialize the calendar to reflect these changes
+initCalendar()
 
 //function to add active on day
 // The 'addListener' function is used to add event listeners to the DOM elements with the class '.day'
@@ -222,6 +223,8 @@ const pmamLi = pmAm.querySelectorAll("li");
 
 const saveBtn = document.querySelector(".save-btn");
 
+// alarmStatus = 'off alarm'
+let setStatus = "noSet";
 saveBtn.addEventListener("click", (e) => {
   const hourScrollPosition = houre.scrollTop;
   const minuteScrollPosition = minute.scrollTop;
@@ -242,14 +245,38 @@ saveBtn.addEventListener("click", (e) => {
   );
   const selectPmam = pmamLi[selectPmamIndex].innerHTML;
 
-  //   console.log(`Selected Time: ${selectedHour}:${selectedMinute} ${selectPmam}`);
+
 
   if (selectPmam == "PM") {
     selectedHour = (parseInt(selectedHour) + 12).toString();
     remainingTime()
   }
 
-  let setStatus = "noSet";
+
+  // let setStatus = "set";
+
+
+ 
+    
+    // setStatus = 'set'
+
+   if (setStatus == "set") {
+    saveBtn.innerHTML = 'tern on alarm'
+    saveBtn.style = 'color : green'
+    setStatus = 'noSet'
+
+  }else if (setStatus == 'noSet') {
+ 
+
+    saveBtn.innerHTML = 'tern off alarm'
+    saveBtn.style = 'color : red'
+    setStatus = 'set'
+    
+  }
+
+  console.log(setStatus)
+
+ 
 
   pushTime(
     parseInt(selectedHour),
@@ -265,9 +292,8 @@ if (getDate == undefined) {
   getDate = new Date();
 }
 
-getDate = `${getDate.getDate()} ${
-  getDate.getMonth() + 1
-} ${getDate.getFullYear()}`;
+getDate = `${getDate.getDate()} ${getDate.getMonth() + 1
+  } ${getDate.getFullYear()}`;
 
 // بازیابی مقدار lastTimeData از localStorage
 let lastTimeData = JSON.parse(localStorage.getItem("lastTimeData"));
@@ -297,9 +323,8 @@ function pushTime(h, m, p, setStatus) {
 
 setInterval(() => {
   const currentTime = new Date();
-  const currentDay = `${currentTime.getDate()} ${
-    currentTime.getMonth() + 1
-  } ${currentTime.getFullYear()}`;
+  const currentDay = `${currentTime.getDate()} ${currentTime.getMonth() + 1
+    } ${currentTime.getFullYear()}`;
   const currentHours = currentTime.getHours();
   const currentMinutes = currentTime.getMinutes();
 
@@ -307,7 +332,7 @@ setInterval(() => {
     lastTimeData.hours === currentHours &&
     lastTimeData.minutes === currentMinutes &&
     lastTimeData.days === currentDay &&
-    lastTimeData.setStatus == "noSet"
+    lastTimeData.setStatus == "set"
   ) {
     console.log("on");
   }
@@ -336,7 +361,7 @@ function remainingTime() {
 
     let rimHouer = lastTimeData.hours - new Date().getHours();
     let rimMinute = lastTimeData.minutes - new Date().getMinutes();
-  
+
     if (rimMinute < 0) {
       rimHouer--;
       rimMinute = 60 + rimMinute;
@@ -346,27 +371,27 @@ function remainingTime() {
       rimDay--;
       rimHouer = 24 + rimHouer;
     }
-    if(rimDay < 0 ){
+    if (rimDay < 0) {
       rimDay = 0
     }
-    if(lastTimeData.period == "AM"){
+    if (lastTimeData.period == "AM") {
       rimHouer - 9
     }
-    console.log(`${rimDay} : ${rimHouer} : ${rimMinute}`);
-  
+    // console.log(`${rimDay} : ${rimHouer} : ${rimMinute}`);
+
     let saveRims = {
-      remainingDay :rimDay,
-      remainingHoure : rimHouer,
-      remainingMinute : rimMinute ,
+      remainingDay: rimDay,
+      remainingHoure: rimHouer,
+      remainingMinute: rimMinute,
     }
-  
+
     rimTimes = saveRims
-  
-    console.log(rimTimes)
+
+    // console.log(rimTimes)
 
     localStorage.setItem("rimTimes", JSON.stringify(rimTimes));
   }, 1000);
- 
+
 }
 // ----------------------------
 // ----------------------------
@@ -386,15 +411,15 @@ let closeListBtn = document.querySelector('.close-list-btn')
 let ringtonBox = document.querySelector('#rington-box')
 let ringtonList = document.querySelector('.rington-list')
 
-ringtonBox.addEventListener('click',showRingtonList)
-closeListBtn.addEventListener('click',closeRingList)
+ringtonBox.addEventListener('click', showRingtonList)
+closeListBtn.addEventListener('click', closeRingList)
 
 function showRingtonList() {
   ringtonList.style = 'display:flex'
   blurCover.style = 'display:block'
 }
 
-function closeRingList () {
+function closeRingList() {
   ringtonList.style = 'display: none'
   blurCover.style = 'display:none'
 }
