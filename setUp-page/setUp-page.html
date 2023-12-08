@@ -8,246 +8,247 @@
     
   </head>
   <body>
-    <!--header [START] -->
-    <header>
-      <!-- back btn [ start] -->
-      <div id="back-btn-header" style="cursor: pointer">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="13"
-          height="23"
-          viewBox="0 0 13 23"
-          fill="none"
-        >
-          <path
-            d="M0.34314 10.6711L9.83288 1.18188C10.2904 0.724365 11.0326 0.724365 11.4901 1.18188L12.597 2.28882C13.0541 2.74585 13.0546 3.48608 12.599 3.94409L5.078 11.4998L12.5985 19.0559C13.0546 19.5139 13.0536 20.2542 12.5966 20.7112L11.4896 21.8181C11.0321 22.2756 10.2899 22.2756 9.8324 21.8181L0.34314 12.3284C-0.11438 11.8708 -0.11438 11.1287 0.34314 10.6711Z"
-            fill="#505050"
-          />
-        </svg>
-        <h4>Challenge/UI</h4>
-      </div>
-      <!-- back btn [ end] -->
-      <!-- trash btn [start] -->
-      <div class="trash-icon">
-        <svg
-          style="cursor: pointer"
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="19"
-          viewBox="0 0 16 19"
-          fill="none"
-        >
-          <path
-            d="M15.4286 1.62501H11.1429L10.8071 0.967584C10.736 0.827034 10.6265 0.708807 10.4908 0.626202C10.3552 0.543598 10.1988 0.499894 10.0393 0.500006H5.95714C5.79799 0.499404 5.64189 0.542945 5.50672 0.625642C5.37154 0.708338 5.26277 0.826845 5.19286 0.967584L4.85714 1.62501H0.571429C0.419876 1.62501 0.274531 1.68427 0.167368 1.78976C0.0602039 1.89525 0 2.03832 0 2.18751L0 3.31251C0 3.46169 0.0602039 3.60476 0.167368 3.71025C0.274531 3.81574 0.419876 3.87501 0.571429 3.87501H15.4286C15.5801 3.87501 15.7255 3.81574 15.8326 3.71025C15.9398 3.60476 16 3.46169 16 3.31251V2.18751C16 2.03832 15.9398 1.89525 15.8326 1.78976C15.7255 1.68427 15.5801 1.62501 15.4286 1.62501ZM1.9 16.918C1.92725 17.3464 2.11934 17.7485 2.43716 18.0424C2.75498 18.3363 3.17464 18.4999 3.61071 18.5H12.3893C12.8254 18.4999 13.245 18.3363 13.5628 18.0424C13.8807 17.7485 14.0727 17.3464 14.1 16.918L14.8571 5H1.14286L1.9 16.918Z"
-            fill="#5C5C5C"
-          />
-        </svg>
-      </div>
-      <!-- trash btn [end] -->
-    </header>
-    <!--header [END] -->
-    <!-- main [START] -->
-    <main>
-      <section id="alarm-timer-live">
-        <div class="timer-controls">
-          <div class="timer-inputs">
-            <input type="number" id="hours" placeholder="Hours" />
-            <input type="number" id="minutes" placeholder="Minutes" />
-            <input type="number" id="seconds" placeholder="Seconds" />
-          </div>
-          <div class="timer-start-button" style="display: none;">
-            <button>Start Timer</button>
-          </div>
-        </div>
-        <div class="container2">
-          <div class="clock">
-            <div id="time">
-              <div class="circle" style="--clr: #fae60e">
-                <div class="dots sec_dot"></div>
-                <svg>
-                  <circle cx="120" cy="120" r="120" id="ss"></circle>
-                </svg>
-                <div class="circle-color color-sec"></div>
-              </div>
-              <div class="circle" style="--clr: #fb296d">
-                <div class="dots min_dot"></div>
-                <svg>
-                  <circle cx="100" cy="100" r="100" id="mm"></circle>
-                </svg>
-                <div class="circle-color color-min"></div>
-              </div>
-              <div class="circle" style="--clr: #2957fb">
-                <div class="dots hr_dot"></div>
-                <svg>
-                  <circle cx="80" cy="80" r="80" id="hh"></circle>
-                </svg>
-                <div class="circle-color color-hr"></div>
-              </div>
-              <div class="timer-percentage">0%</div>
-            </div>
-          </div>
-        </div>
-        <div class="timer">
-          <span class="days">10</span>
-          <span class="hours">10</span>
-          <span class="minutes">10</span>
-        </div>
-        <!-- بچه ها این قسمتش چون میدونستم با جاوااسکریپت کامل زدین کدش رو نزدم :) -->
-      </section>
-      <!--SEC Description [start]  -->
-      <section id="Description-alarm">
-        <input
-          type="text"
-          placeholder="Enter your title"
-          class="title-input"
-          maxlength="12"
-        />
-        <!-- <h5>Description</h5> -->
-        <textarea name="" id="" cols="30" rows="10">
-Lorem ipsum dolor sit amet consectetur. Volutpat magnis lorem cras netus convallis. Pellentesque arcu aliquam lacus lacus lorem crasnetus cr....Lorem ipsum dolor sit amet consectetur. Volutpat magnis lorem cras netus convallis. Pellentesque arcu aliquam lacus lacus lorem crasnetus cr....</textarea
-        >
-      </section>
-      <!--SEC Description [end]  -->
-      <!-- SEC edit time box [start] -->
-      <a id="edit-time-box" href="set-time-page/setTime-page.html">
-        <div id="edit-time-box-title"><h5>edit time</h5></div>
-        <div id="main-time-box">
-          <div id="taghvime">
-            <div id="date-taghvime">
-              <div id="date-taghvime-title">
-                <h3>< 2023 April ></h3>
-              </div>
-              <div id="the-name-day-and-time">
-                <div class="moths-and-days">
-                  <h6 class="whaite-time-time-edit">Sun</h6>
-                  <h6>.</h6>
-                  <h6 class="whaite-time-time-edit">2</h6>
-                  <h6 class="whaite-time-time-edit">9</h6>
-                  <h6 class="whaite-time-time-edit">16</h6>
-                  <h6 class="whaite-time-time-edit">23</h6>
-                  <h6 class="whaite-time-time-edit">30</h6>
-                </div>
+    <div id="setUp-page-container">
+      <div class="blur-cover"></div>
+        <header>
+            <img class="back-icon" src="images/back-icon.svg" alt="">
+            <img class="trash-icon" src="images/icons8-trash.svg" alt="">
+        </header>
 
-                <div class="moths-and-days">
-                  <h6 class="whaite-time-time-edit">Mon</h6>
-                  <h6>.</h6>
-                  <h6>3</h6>
-                  <h6>10</h6>
-                  <h6>17</h6>
-                  <h6>24</h6>
-                  <h6>31</h6>
-                </div>
+        
+        <div id="RimTime-clock"> </div>
 
-                <div class="moths-and-days">
-                  <h6 class="whaite-time-time-edit">Tue</h6>
-                  <h6>.</h6>
-                  <h6>4</h6>
-                  <h6>11</h6>
-                  <h6>18</h6>
-                  <h6>25</h6>
-                  <h6>.</h6>
-                </div>
-                <div class="moths-and-days">
-                  <h6 class="whaite-time-time-edit">Wed</h6>
-                  <h6>.</h6>
-                  <h6>5</h6>
-                  <h6>12</h6>
-                  <h6>19</h6>
-                  <h6>26</h6>
-                  <h6>.</h6>
-                </div>
-                <div class="moths-and-days">
-                  <h6 class="whaite-time-time-edit">Thu</h6>
-                  <h6>.</h6>
-                  <h6>6</h6>
-                  <h6>13</h6>
-                  <h6>20</h6>
-                  <h6>27</h6>
-                  <h6>.</h6>
-                </div>
-                <div class="moths-and-days">
-                  <h6 class="whaite-time-time-edit">Fri</h6>
-                  <h6>.</h6>
-                  <h6>7</h6>
-                  <h6>14</h6>
-                  <h6>21</h6>
-                  <h6>28</h6>
-                  <h6>.</h6>
-                </div>
-                <div class="moths-and-days">
-                  <h6 class="whaite-time-time-edit">Sat</h6>
-                  <h6 class="whaite-time-time-edit">1</h6>
-                  <h6 class="whaite-time-time-edit">8</h6>
-                  <h6 class="whaite-time-time-edit">15</h6>
-                  <h6 class="whaite-time-time-edit">22</h6>
-                  <h6 class="whaite-time-time-edit">29</h6>
-                  <h6>.</h6>
-                </div>
-              </div>
-            </div>
-            <div id="btn-taghvime">
-              <div id="input-date-taghvime">
-                <h6>mm/yyyy</h6>
-                <h6>go</h6>
-              </div>
-              <div id="today-btn-taghvime"><h6>today</h6></div>
-            </div>
-          </div>
+        <!-- show remaining time -->
+        <!-- Rim = remaining -->
+        <div id="RimTime-numbers">
+            <span>10</span>
+            <span>:</span>
+            <span>04</span>
+            <span>:</span>
+            <span>20</span>
+            <span>.</span>
+            <span>5</span>
+        </div>
 
-          <div id="hours-editor-edit-time">
-            <div id="AM-OR-PM-time">
-              <h6>AM</h6>
-              <h6>PM</h6>
-            </div>
-            <div class="hours-and-min-time-edit">
-              <h6>01</h6>
-              <h6>02</h6>
-              <h6>03</h6>
-              <h6>04</h6>
-              <h6>05</h6>
-            </div>
-            <div class="hours-and-min-time-edit">
-              <h6>44</h6>
-              <h6>45</h6>
-              <h6>46</h6>
-              <h6>47</h6>
-              <h6>48</h6>
-            </div>
-          </div>
+        <div id="RimTime-leters">
+            <span>Days</span>
+            <span>:</span>
+            <span>Hr</span>
+            <span>:</span>
+            <span>Min</span>
+            <span>.</span>
+            <span>sec</span>
         </div>
-      </a>
-      <!-- SEC edit time box [end] -->
-      <!-- SEC Set Music [start] -->
-      <section id="Set-Music">
-        <h6>set Music</h6>
-        <div id="select-music">
-          <div class="music">
-            <!-- <h2 class="title">hello</h2> -->
-            <div class="player">
-              <audio class="audio" src=""></audio>
-              <div class="btns">
-                <span class="perv">
-                  <ion-icon name="play-back-outline"></ion-icon>
-                </span>
-                <span class="playPause">
-                  <ion-icon name="play-outline"></ion-icon>
-                </span>
-                <span class="next">
-                  <ion-icon name="play-forward-outline"></ion-icon>
-                </span>
-              </div>
+        <!-- ------------------ -->
+
+        <!-- description -->
+
+
+        <div id="Description-container">
+            <span>Description</span>
+            <div id="textarea-contaner">
+                <textarea placeholder="Lorem ipsum dolor sit amet, consectetur " name="" id="" cols="30" rows="10"></textarea>
             </div>
-          </div>
         </div>
-      </section>
-      <!-- SEC Set Music [end] -->
-      <!-- SEC Tern Of Alarm BTN [start] -->
-      <div id="Tern-Of-Alarm-BTN">
-        <h6>tern of Alarm</h6>
+
+        <div id="edit-time-box">
+          
+          <!-- <span style="color: #fff;">Edit-time</span> -->
+          <div class="picker">
+            <div class="picker-window"></div>
+            <ul class="PMAM">
+                <li>PM</li>
+                <li>AM</li>
+            </ul>
+            <ul class="picker-hour">
+      
+            </ul>
+            <ul class="picker-minute">
+         
+            </ul>
+        </div>
+
+        </div>
+
+
+        
+
+          <div class="calender-container">
+
+            
+           
+             <div class="calendar">
+               <div class="month">
+                 <i class="prev"><</i>
+                 <div class="date">december 2015</div>
+                 <i class=" next">></i>
+               </div>
+               <div class="weekdays">
+                 <div>Sun</div>
+                 <div>Mon</div>
+                 <div>Tue</div>
+                 <div>Wed</div>
+                 <div>Thu</div>
+                 <div>Fri</div>
+                 <div>Sat</div>
+               </div>
+               <div class="days"></div>
+               <div class="goto-today">
+                 <div class="goto">
+                   <input type="text" placeholder="mm/yyyy" class="date-input" />
+                   <button class="goto-btn">Go</button>
+                 </div>
+                 <button class="today-btn">Today</button>
+               </div>
+             
+           </div>
+     
+         </div>
+        
+
+        <div id="rington-box">
+          <span>Rington</span>
+          <span>default rington ></span>
+        </div>
+
+      <div class="rington-list">
+        <img class="close-list-btn" src="images/icons8-close.svg" alt="">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
-      <!-- SEC Tern Of Alarm BTN [end] -->
-    </main>
-    <!-- main [END] -->
+
+
+
+
+
+
+
+      <!-- balad boodam ba btn bezanamsh vali nazadm🗿 -->
+      <div class="save-btn">tern on Alarm</div>
+    </div>
+    <div id="setUp-page-container">
+      <div class="blur-cover"></div>
+        <header>
+            <img class="back-icon" src="images/back-icon.svg" alt="">
+            <img class="trash-icon" src="images/icons8-trash.svg" alt="">
+        </header>
+
+        
+        <div id="RimTime-clock"> </div>
+
+        <!-- show remaining time -->
+        <!-- Rim = remaining -->
+        <div id="RimTime-numbers">
+            <span>10</span>
+            <span>:</span>
+            <span>04</span>
+            <span>:</span>
+            <span>20</span>
+            <span>.</span>
+            <span>5</span>
+        </div>
+
+        <div id="RimTime-leters">
+            <span>Days</span>
+            <span>:</span>
+            <span>Hr</span>
+            <span>:</span>
+            <span>Min</span>
+            <span>.</span>
+            <span>sec</span>
+        </div>
+        <!-- ------------------ -->
+
+        <!-- description -->
+
+
+        <div id="Description-container">
+            <span>Description</span>
+            <div id="textarea-contaner">
+                <textarea placeholder="Lorem ipsum dolor sit amet, consectetur " name="" id="" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+
+        <div id="edit-time-box">
+          
+          <!-- <span style="color: #fff;">Edit-time</span> -->
+          <div class="picker">
+            <div class="picker-window"></div>
+            <ul class="PMAM">
+                <li>PM</li>
+                <li>AM</li>
+            </ul>
+            <ul class="picker-hour">
+      
+            </ul>
+            <ul class="picker-minute">
+         
+            </ul>
+        </div>
+
+        </div>
+
+
+        
+
+          <div class="calender-container">
+
+            
+           
+             <div class="calendar">
+               <div class="month">
+                 <i class="prev"><</i>
+                 <div class="date">december 2015</div>
+                 <i class=" next">></i>
+               </div>
+               <div class="weekdays">
+                 <div>Sun</div>
+                 <div>Mon</div>
+                 <div>Tue</div>
+                 <div>Wed</div>
+                 <div>Thu</div>
+                 <div>Fri</div>
+                 <div>Sat</div>
+               </div>
+               <div class="days"></div>
+               <div class="goto-today">
+                 <div class="goto">
+                   <input type="text" placeholder="mm/yyyy" class="date-input" />
+                   <button class="goto-btn">Go</button>
+                 </div>
+                 <button class="today-btn">Today</button>
+               </div>
+             
+           </div>
+     
+         </div>
+        
+
+        <div id="rington-box">
+          <span>Rington</span>
+          <span>default rington ></span>
+        </div>
+
+      <div class="rington-list">
+        <img class="close-list-btn" src="images/icons8-close.svg" alt="">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+
+
+
+
+
+
+      <!-- balad boodam ba btn bezanamsh vali nazadm🗿 -->
+      <div class="save-btn">tern on Alarm</div>
+    </div>
+
     <script src="app.js"></script>
     <script
       type="module"
