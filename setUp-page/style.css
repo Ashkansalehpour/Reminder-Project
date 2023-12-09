@@ -187,6 +187,8 @@ header {
 }
 
 /* Alarm Style */
+
+/* Styling for the clock */
 .clock {
   position: relative;
   width: 280px;
@@ -198,7 +200,7 @@ header {
   box-shadow: inset 5px 5px 25px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
 }
-
+/* Styling for the time container within the clock */
 #time {
   position: relative;
   width: 250px;
