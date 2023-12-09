@@ -336,3 +336,21 @@ header {
 [data-ring="hh"] {
   --rotation: 0deg;
 }
+/* Styling for the time span within the clock */
+
+#time span {
+  position: absolute; /* Positioned absolutely within its parent */
+  inset: 55px; /* Positioned 55px from all edges */
+  text-align: center; /* Center-align text */
+  color: #999; /* Set text color */
+  font-family: consolas; /* Use Consolas font family */
+  transform: rotate(calc(-30deg * var(--i))); /* Rotate based on a custom property */
+}
+
+/* Styling for the "b" element within the time span */
+
+#time span b {
+  font-size: 0.75em; /* Set font size to 0.75em */
+  font-weight: 500; /* Set font weight to 500 (semi-bold) */
+  display: inline-block; /* Make it an inline-block element */
+}
