@@ -253,12 +253,6 @@ saveBtn.addEventListener("click", (e) => {
   }
 
 
-  // let setStatus = "set";
-
-
- 
-    
-    // setStatus = 'set'
 
    if (setStatus == "set") {
     saveBtn.innerHTML = 'tern on Alarm'
