@@ -1,5 +1,4 @@
-// Alireza Ahmadi
-// email : Ahmadialireza@gmail.com
+
 // select calender
 const calendar = document.querySelector(".calendar"),
   // select date
@@ -14,7 +13,7 @@ const calendar = document.querySelector(".calendar"),
   gotoBtn = document.querySelector(".goto-btn"),
   // select date input
   dateInput = document.querySelector(".date-input");
-// make today to nowday
+// make today to nowDay
 let today = new Date();
 // create active day
 let activeDay;
@@ -142,7 +141,7 @@ function addListener() {
       // Assign the selectedDate to 'getDate' variable for later use
       getDate = selectedDate;
 
-      console.log(getDate);
+
       // Check if the selectedDate is in future
       if (selectedDate > currentDate) {
         // If it's in future, calculate the remaining days and assign it to 'remainingDay'
@@ -150,7 +149,7 @@ function addListener() {
           (selectedDate - currentDate) / (1000 * 60 * 60 * 24)
         );
         remainingDay = daysRemaining;
-        console.log(`Days remaining: ${selectedDate}`);
+
       } else if (selectedDate.toDateString() === currentDate.toDateString()) {
         // Check if the selected day is the current day
         // If so, calculate the remaining hours and minutes and print them
@@ -166,9 +165,7 @@ function addListener() {
           const hoursRemaining = remainingTime.getUTCHours();
           const minutesRemaining = remainingTime.getUTCMinutes();
 
-          console.log(
-            `Time remaining today: ${hoursRemaining} hours, ${minutesRemaining} minutes`
-          );
+          
         }
       } else {
         // If the selected day is in past, print alert and remove the 'active' class
@@ -180,11 +177,6 @@ function addListener() {
 }
 
 
-
-
-// Alireza zeynabi
-// email : Zeynabialireza@gmail.com
-// ----------------------------------------------------
 const houre = document.querySelector(".picker-hour");
 const minute = document.querySelector(".picker-minute");
 const pmAm = document.querySelector(".PMAM");
@@ -212,7 +204,7 @@ for (let i = 0; i <= 59; i++) {
     minuteLi.innerHTML = [i];
   }
 }
-// ------------------------------------
+
 
 // Select hour list items
 const houreLi = houre.querySelectorAll("li");
@@ -223,7 +215,7 @@ const pmamLi = pmAm.querySelectorAll("li");
 
 const saveBtn = document.querySelector(".save-btn");
 
-// alarmStatus = 'off alarm'
+
 let setStatus = "noSet";
 saveBtn.addEventListener("click", (e) => {
   const hourScrollPosition = houre.scrollTop;
@@ -267,11 +259,6 @@ saveBtn.addEventListener("click", (e) => {
     setStatus = 'set'
 
   }
-
-  console.log(setStatus)
-
-
-
   pushTime(
     parseInt(selectedHour),
     parseInt(selectedMinute),
@@ -281,7 +268,6 @@ saveBtn.addEventListener("click", (e) => {
 });
 
 let getDate;
-
 if (getDate == undefined) {
   getDate = new Date();
 }
@@ -289,10 +275,8 @@ if (getDate == undefined) {
 getDate = `${getDate.getDate()} ${getDate.getMonth() + 1
   } ${getDate.getFullYear()}`;
 
-// بازیابی مقدار lastTimeData از localStorage
 let lastTimeData = JSON.parse(localStorage.getItem("lastTimeData"));
 
-// اگر اطلاعات در localStorage موجود نباشد، مقدار اولیه را با مقدار خالی تنظیم کنید
 if (!lastTimeData) {
   lastTimeData = {};
 }
@@ -308,10 +292,6 @@ function pushTime(h, m, p, setStatus) {
 
   lastTimeData = timeData;
 
-  // console.log("Last Selected Time:");
-  // console.log(lastTimeData);
-
-  // ذخیره lastTimeData در localStorage
   localStorage.setItem("lastTimeData", JSON.stringify(lastTimeData));
 }
 
@@ -328,24 +308,15 @@ setInterval(() => {
     lastTimeData.days === currentDay &&
     lastTimeData.setStatus == "set"
   ) {
-    console.log("on");
+
   }
 }, 1000);
-
-// // turn off alarm btn
-// const offBtn = document.querySelector(".off-btn");
-
-// offBtn.addEventListener("click", () => {
-//   lastTimeData.setStatus = "set";
-//   // console.log(lastTimeData)
-// });
 
 let remainingDay;
 if (remainingDay == undefined) {
   remainingDay = 0;
 }
 
-// console.log(remainingDay);
 let rimTimes;
 
 function remainingTime() {
@@ -371,7 +342,7 @@ function remainingTime() {
     if (lastTimeData.period == "AM") {
       rimHouer - 9
     }
-    // console.log(`${rimDay} : ${rimHouer} : ${rimMinute}`);
+
 
     let saveRims = {
       remainingDay: rimDay,
@@ -393,15 +364,6 @@ function remainingTime() {
   }, 1000);
 
 }
-// ----------------------------
-// ----------------------------
-// ----------------------------
-
-
-
-
-
-//  sohw setTime page
 
 let editTimeBox = document.querySelector('#edit-time-box')
 let timeDateContainer = document.querySelector('.timeDate-container')
