@@ -219,3 +219,34 @@ header {
   justify-content: center;
   align-items: center;
 }
+/* Styling for circles within the time container */
+#time .circle {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styling for the SVG elements within the circles */
+#time .circle svg {
+  position: relative;
+  transform: rotate(270deg);
+}
+
+/* Styling for the first circle's SVG */
+#time .circle:nth-child(1) svg {
+  height: 250px;
+  width: 250px;
+}
+
+/* Styling for the second circle's SVG */
+#time .circle:nth-child(2) svg {
+  height: 210px;
+  width: 210px;
+}
+
+/* Styling for the third circle's SVG */
+#time .circle:nth-child(3) svg {
+  height: 170px;
+  width: 170px;
+}
