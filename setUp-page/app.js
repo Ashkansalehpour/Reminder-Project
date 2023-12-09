@@ -254,23 +254,23 @@ saveBtn.addEventListener("click", (e) => {
 
 
 
-   if (setStatus == "set") {
+  if (setStatus == "set") {
     saveBtn.innerHTML = 'tern on Alarm'
     saveBtn.style = 'color : #1DFF5D'
     setStatus = 'noSet'
 
-  }else if (setStatus == 'noSet') {
- 
+  } else if (setStatus == 'noSet') {
+
 
     saveBtn.innerHTML = 'tern off Alarm'
     saveBtn.style = 'color : #FB296D'
     setStatus = 'set'
-    
+
   }
 
   console.log(setStatus)
 
- 
+
 
   pushTime(
     parseInt(selectedHour),
@@ -377,11 +377,17 @@ function remainingTime() {
       remainingDay: rimDay,
       remainingHoure: rimHouer,
       remainingMinute: rimMinute,
-    }
 
+    };
     rimTimes = saveRims
-
-    // console.log(rimTimes)
+    // Update the content of the span with the ID "dd-rem'"
+    document.getElementById('dd-rem').textContent = rimDay;
+    // Update the content of the span with the ID "hh-rem"
+    const hoursElement = document.getElementById('hh-rem');
+    hoursElement.textContent = rimHouer < 10 ? `0${rimHouer}` : rimHouer;
+    // Update the content of the span with the ID "mm-rem"
+    const minutesElement = document.getElementById('mm-rem');
+    minutesElement.textContent = rimMinute < 10 ? `0${rimMinute}` : rimMinute;
 
     localStorage.setItem("rimTimes", JSON.stringify(rimTimes));
   }, 1000);
