@@ -19,7 +19,17 @@
         <!-- outer container for the clock. -->
         <div class="clock">
           <!-- This div contains the circles and dots that make up the clock face. -->
-          <div id="time"></div>
+          <div id="time">
+            <!-- Seconds circle -->
+            <div class="circle" style="--clr: #ff2972">
+                <div class="dots sec_dot"></div>
+                <svg>
+                    <circle cx="120" cy="120" r="120" id="ss"></circle>
+                </svg>
+                <div class="circle-color color-sec"></div>
+            </div>
+      </div>
+          </div>
         </div>
       </div>
       <!-- show remaining time -->
