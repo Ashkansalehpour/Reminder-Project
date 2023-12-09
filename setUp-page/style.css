@@ -9,10 +9,10 @@
 }
 
 body {
-  background:#141414;
+  background: #141414;
   margin: 0;
 }
-.blur-cover{
+.blur-cover {
   width: 100%;
   height: 100%;
   background-color: #454545cc;
@@ -77,40 +77,40 @@ header {
 
 #RimTime-numbers :nth-child(1),
 #RimTime-leters :nth-child(1) {
-  color: #2957FB;
+  color: #2957fb;
 }
 
 #RimTime-numbers :nth-child(3),
 #RimTime-leters :nth-child(3) {
-  color: #FB296D;
+  color: #fb296d;
 }
 
 #RimTime-numbers :nth-child(5),
 #RimTime-leters :nth-child(5) {
-  color: #FAE60E;
+  color: #fae60e;
 }
 
 #RimTime-numbers :nth-child(6),
 #RimTime-numbers :nth-child(7),
 #RimTime-leters :nth-child(6),
 #RimTime-leters :nth-child(7) {
-  color: #1DFF5D;
+  color: #1dff5d;
 }
 
 /* ----------------------- */
 
-#Description-container{
-  width: 95%; 
+#Description-container {
+  width: 95%;
   margin: 0 auto;
   margin-top: 20px;
   background-color: #252525;
   border-radius: 10px;
 }
 #Description-container span {
-  color: #BABABA;
+  color: #bababa;
   margin: 10px;
 }
-#textarea-contaner{
+#textarea-contaner {
   width: 100%;
   color: #fff;
   text-align: center;
@@ -128,7 +128,7 @@ header {
   color: #505050;
 }
 
-#edit-time-box{
+#edit-time-box {
   width: 95%;
   height: 35%;
   background-color: #252525;
@@ -142,7 +142,7 @@ header {
   justify-content: center;
 }
 
-#rington-box{
+#rington-box {
   width: 95%;
   height: 50px;
   margin: 0 auto;
@@ -155,45 +155,45 @@ header {
   color: #fff;
 }
 
-#rington-box :nth-child(2){
-  opacity: .5;
+#rington-box :nth-child(2) {
+  opacity: 0.5;
 }
 /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-.rington-list{
+.rington-list {
   width: 95%;
-  height:60%;
+  height: 60%;
   top: 30%;
   position: absolute;
   left: 2.5%;
-  background-color: #2957FB;
+  background-color: #2957fb;
   margin: 0 auto;
   display: none;
   z-index: 1;
   /* position: relative; */
 }
 
-.close-list-btn{
+.close-list-btn {
   width: 40px;
   margin-left: 88%;
   cursor: pointer;
   position: absolute;
 }
 
-.save-btn{
+.save-btn {
   width: 60%;
-  color: #1DFF5D;
+  color: #1dff5d;
   height: 40px;
- margin: 0 auto;
- margin-top: 3%;
- margin-bottom: 3%;
- text-align: center;
- border-radius: 10px;
- background-color:#252525;
- display: flex;
- align-items: center;
- justify-content: center;
- cursor: pointer;
+  margin: 0 auto;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #252525;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 /* Alarm Style */
@@ -249,4 +249,33 @@ header {
 #time .circle:nth-child(3) svg {
   height: 170px;
   width: 170px;
+}
+
+/* Styling for the inner circles within the SVG elements */
+#time .circle svg circle {
+  width: 100%;
+  height: 100%;
+  fill: transparent;
+  stroke-width: 5;
+  stroke: var(--clr); /* Color of the stroke (border) */
+  transform: translate(5px, 5px); /* Offset the circle by 5px */
+  opacity: 0.25; /* Set opacity to 0.25 */
+}
+
+/* Styling for the first circle's SVG circle */
+#time .circle:nth-child(1) svg circle {
+  stroke-dasharray: 760; /* Total length of the stroke */
+  stroke-dashoffset: 760; /* Initially, no part of the stroke is visible */
+}
+
+/* Styling for the second circle's SVG circle */
+#time .circle:nth-child(2) svg circle {
+  stroke-dasharray: 630; /* Total length of the stroke */
+  stroke-dashoffset: 630; /* Initially, no part of the stroke is visible */
+}
+
+/* Styling for the third circle's SVG circle */
+#time .circle:nth-child(3) svg circle {
+  stroke-dasharray: 510; /* Total length of the stroke */
+  stroke-dashoffset: 510; /* Initially, no part of the stroke is visible */
 }
