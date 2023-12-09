@@ -261,15 +261,15 @@ saveBtn.addEventListener("click", (e) => {
     // setStatus = 'set'
 
    if (setStatus == "set") {
-    saveBtn.innerHTML = 'tern on alarm'
-    saveBtn.style = 'color : green'
+    saveBtn.innerHTML = 'tern on Alarm'
+    saveBtn.style = 'color : #1DFF5D'
     setStatus = 'noSet'
 
   }else if (setStatus == 'noSet') {
  
 
-    saveBtn.innerHTML = 'tern off alarm'
-    saveBtn.style = 'color : red'
+    saveBtn.innerHTML = 'tern off Alarm'
+    saveBtn.style = 'color : #FB296D'
     setStatus = 'set'
     
   }
