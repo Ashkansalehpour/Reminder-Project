@@ -305,3 +305,34 @@ header {
     0 0 60px var(--clr), /* Shadow with 60px blur */
     0 0 80px var(--clr); /* Shadow with 80px blur */
 }
+/* Styling for animation of the dots on each ring */
+
+/* Animation for seconds dot */
+.sec_dot::before {
+  animation: rotateCounterClockwise var(--sec-anim-duration) linear infinite;
+}
+
+/* Animation for minutes dot */
+.min_dot::before {
+  animation: rotateCounterClockwise var(--min-anim-duration) linear infinite;
+}
+
+/* Animation for hours dot */
+.hr_dot::before {
+  animation: rotateCounterClockwise var(--hr-anim-duration) linear infinite;
+}
+
+/* Custom property to control rotation for seconds ring */
+[data-ring="ss"] {
+  --rotation: 0deg;
+}
+
+/* Custom property to control rotation for minutes ring */
+[data-ring="mm"] {
+  --rotation: 0deg;
+}
+
+/* Custom property to control rotation for hours ring */
+[data-ring="hh"] {
+  --rotation: 0deg;
+}
