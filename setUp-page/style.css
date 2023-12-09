@@ -1,3 +1,13 @@
+/* Keyframes for rotating counter-clockwise animation */
+@keyframes rotateCounterClockwise {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -750;
+  }
+}
+
 body {
   background:#141414;
   margin: 0;
