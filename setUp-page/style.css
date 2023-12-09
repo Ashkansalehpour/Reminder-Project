@@ -354,3 +354,19 @@ header {
   font-weight: 500; /* Set font weight to 500 (semi-bold) */
   display: inline-block; /* Make it an inline-block element */
 }
+/* Styling for the timer container */
+
+.timer-container {
+  position: absolute; /* Positioned absolutely within its containing element */
+  top: 50%; /* Positioned at the vertical center of its containing element */
+  left: 10px; /* Positioned 10px from the left edge of its containing element */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center-align items vertically */
+}
+
+/* Style the timer input fields within the container */
+
+.timer-container input {
+  margin-right: 10px; /* Set right margin to create spacing between input fields */
+  padding: 5px; /* Set padding for input fields */
+}
