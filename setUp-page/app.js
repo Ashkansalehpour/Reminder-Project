@@ -119,9 +119,12 @@ function nextMonth() {
     // And increase the year by one
     year++;
   }
+  // After changing the month and possibly the year, we initialize the calendar to reflect these changes
+  initCalendar();
 }
+
 // After changing the month and possibly the year, we initialize the calendar to reflect these changes
-initCalendar()
+
 
 //function to add active on day
 // The 'addListener' function is used to add event listeners to the DOM elements with the class '.day'
@@ -331,7 +334,7 @@ function remainingTime() {
       rimHouer--;
       rimMinute = 60 + rimMinute;
     }
-    // -------------------------inja validation ------------------------//
+
     if (rimHouer < 0) {
       rimDay--;
       rimHouer = 24 + rimHouer;
