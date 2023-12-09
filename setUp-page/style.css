@@ -279,3 +279,29 @@ header {
   stroke-dasharray: 510; /* Total length of the stroke */
   stroke-dashoffset: 510; /* Initially, no part of the stroke is visible */
 }
+/* Styling for dots */
+.dots {
+  position: absolute; /* Positioned absolutely within its containing element */
+  width: 100%;
+  height: 100%;
+  display: flex; /* Use flexbox for alignment */
+  align-items: flex-start; /* Align items to the start of the cross axis */
+  justify-content: center; /* Center items along the main axis */
+  z-index: 10; /* Set a higher z-index for stacking order */
+}
+
+/* Styling for the pseudo-element before each dot */
+.dots::before {
+  content: ""; /* Empty content for pseudo-element */
+  position: absolute; /* Positioned absolutely within its parent .dots */
+  top: -3px; /* Offset from the top by 3px */
+  width: 15px; /* Set width */
+  height: 15px; /* Set height */
+  background: var(--clr); /* Set background color from CSS variable */
+  border-radius: 50%; /* Make it a circle by setting border-radius to 50% */
+  box-shadow:  /* Add box shadow for a decorative effect */
+    0 0 40px var(--clr), /* Shadow with 40px blur */
+    0 0 40px var(--clr), /* Another shadow with 40px blur */
+    0 0 60px var(--clr), /* Shadow with 60px blur */
+    0 0 80px var(--clr); /* Shadow with 80px blur */
+}
