@@ -48,8 +48,6 @@ header {
   height: 300px;
   margin: 0 auto;
   margin-top: 10%;
-  border-radius: 100%;
-  background-color: aliceblue;
 }
 
 #RimTime-numbers,
@@ -187,3 +185,4 @@ header {
  justify-content: center;
  cursor: pointer;
 }
+
