@@ -12,6 +12,7 @@ const calendar = document.querySelector(".calendar"),
   gotoBtn = document.querySelector(".goto-btn"),
   // select date input
   dateInput = document.querySelector(".date-input");
+
 // make today to nowDay
 let today = new Date();
 // create active day
@@ -20,7 +21,8 @@ let activeDay;
 let month = today.getMonth();
 // create year by selecting
 let year = today.getFullYear();
-// add name  months of year to array
+
+// add name months of year to array
 const months = [
   "January",
   "February",
@@ -35,6 +37,10 @@ const months = [
   "November",
   "December",
 ];
+
+// Call initCalendar to display the current month when the page is loaded
+initCalendar();
+
 //function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
 function initCalendar() {
   // make first day of calendar
@@ -79,9 +85,12 @@ function initCalendar() {
   // Update the content of the .date div with the current month and year
   const dateDiv = document.querySelector(".date");
   dateDiv.innerHTML = `${months[month]} ${year}`;
-  
+
   addListener();
 }
+
+// rest of your code...
+
 //function to add month and year on prev and next button
 // The function 'prevMonth' is handling the transition to the previous month.
 function prevMonth() {
@@ -147,7 +156,7 @@ function addListener() {
           // Calculate remaining hours and minutes today
           const remainingTime = new Date(endOfDay - currentDate);
           const hoursRemaining = remainingTime.getUTCHours();
-          const minutesRemaining = remainingTime.getUTCMinutes();       
+          const minutesRemaining = remainingTime.getUTCMinutes();
         }
       } else {
         // If the selected day is in past, print alert and remove the 'active' class
