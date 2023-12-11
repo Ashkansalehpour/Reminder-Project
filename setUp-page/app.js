@@ -1,4 +1,3 @@
-
 // select calender
 const calendar = document.querySelector(".calendar"),
   // select date
@@ -36,33 +35,23 @@ const months = [
   "November",
   "December",
 ];
-
 //function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
 function initCalendar() {
-  // make first day of calender
+  // make first day of calendar
   const firstDay = new Date(year, month, 1);
-  // make last day of calender
+  // make last day of calendar
   const lastDay = new Date(year, month + 1, 0);
-  // make prev day and last date of calender
+  // make prev day and last date of calendar
   const prevDays = firstDay.getDay();
   const lastDate = lastDay.getDate();
-  // inner html month and year
-  date.innerHTML = months[month] + " " + year;
-
   let days = "";
   // The loop will iterate till 'prevDays' counter.
-  // 'prevDays' is presumably containing the number of days from the previous month that should be displayed on the current month's calendar view.
-  // Within the loop, for each iteration, an empty day div (styled as a date from the previous month) is concatenated to the 'days' string.
-
   for (let i = 0; i < prevDays; i++) {
     days += `<div class="day prev-date"></div>`;
   }
-
-  // The 'for' loop is iterating through each day of the month. Here, 'lastDate' is assumed to be the last day of the month.
-
+  // The 'for' loop is iterating through each day of the month.
   for (let i = 1; i <= lastDate; i++) {
-    // With 'new Date()' we get the current date, and through 'getDate()', 'getFullYear()', and 'getMonth()' methods we retrieve the day, year, and month respectively.
-    // If the iterated day (i), year and month are equal to today's date, we are looking at the 'today' date on the calendar.
+    // If the iterated day (i), year, and month are equal to today's date, we are looking at the 'today' date on the calendar.
     if (
       i === new Date().getDate() &&
       year === new Date().getFullYear() &&
@@ -77,7 +66,7 @@ function initCalendar() {
         days += `<div class="day today active" date-value="${i}">${i}</div>`;
       }
     } else {
-      // For all other dates, if an event exists, append a 'div' for the date with an 'event' class else append a 'div' only with 'day' class.
+      // For all other dates, if an event exists, append a 'div' for the date with an 'event' class, else append a 'div' only with 'day' class.
       if (event) {
         days += `<div class="day event" date-value="${i}">${i}</div>`;
       } else {
@@ -86,13 +75,14 @@ function initCalendar() {
     }
   }
   // At the end, 'days' string contains markup for each day of the month with appropriate classes.
-
   daysContainer.innerHTML = days;
+  // Update the content of the .date div with the current month and year
+  const dateDiv = document.querySelector(".date");
+  dateDiv.innerHTML = `${months[month]} ${year}`;
+  
   addListener();
 }
-
 //function to add month and year on prev and next button
-
 // The function 'prevMonth' is handling the transition to the previous month.
 function prevMonth() {
   // The current month is decreased by one
@@ -107,7 +97,6 @@ function prevMonth() {
   // After changing the month and possibly the year, we initialize the calendar to reflect these changes
   initCalendar();
 }
-
 // The function 'nextMonth' is handling the transition to the next month.
 function nextMonth() {
   // The current month is increased by one
@@ -122,10 +111,7 @@ function nextMonth() {
   // After changing the month and possibly the year, we initialize the calendar to reflect these changes
   initCalendar();
 }
-
 // After changing the month and possibly the year, we initialize the calendar to reflect these changes
-
-
 //function to add active on day
 // The 'addListener' function is used to add event listeners to the DOM elements with the class '.day'
 function addListener() {
@@ -140,11 +126,8 @@ function addListener() {
       // Creating a date object 'currentDate' for the current day
       const currentDate = new Date();
       const clickedMonth = month;
-
       // Assign the selectedDate to 'getDate' variable for later use
       getDate = selectedDate;
-
-
       // Check if the selectedDate is in future
       if (selectedDate > currentDate) {
         // If it's in future, calculate the remaining days and assign it to 'remainingDay'
@@ -152,13 +135,11 @@ function addListener() {
           (selectedDate - currentDate) / (1000 * 60 * 60 * 24)
         );
         remainingDay = daysRemaining;
-
       } else if (selectedDate.toDateString() === currentDate.toDateString()) {
         // Check if the selected day is the current day
         // If so, calculate the remaining hours and minutes and print them
         const endOfDay = new Date(currentDate);
         endOfDay.setHours(23, 59, 59); // Set it to the end of the day
-
         // Check if the selected date has past or if it's in future
         if (selectedDate >= endOfDay) {
           alert("Time remaining today: 0 hours, 0 minutes");
@@ -166,9 +147,7 @@ function addListener() {
           // Calculate remaining hours and minutes today
           const remainingTime = new Date(endOfDay - currentDate);
           const hoursRemaining = remainingTime.getUTCHours();
-          const minutesRemaining = remainingTime.getUTCMinutes();
-
-          
+          const minutesRemaining = remainingTime.getUTCMinutes();       
         }
       } else {
         // If the selected day is in past, print alert and remove the 'active' class
@@ -178,14 +157,11 @@ function addListener() {
     });
   });
 }
-
-
 const houre = document.querySelector(".picker-hour");
 const minute = document.querySelector(".picker-minute");
 const pmAm = document.querySelector(".PMAM");
 const pickerWindow = document.querySelector(".picker-window");
 // create li for houres and minutes
-
 for (let i = 1; i <= 12; i++) {
   const houreLi = document.createElement("li");
   houre.appendChild(houreLi);
@@ -196,7 +172,6 @@ for (let i = 1; i <= 12; i++) {
     houreLi.innerHTML = [i];
   }
 }
-
 for (let i = 0; i <= 59; i++) {
   const minuteLi = document.createElement("li");
   minute.appendChild(minuteLi);
