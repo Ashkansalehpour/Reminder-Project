@@ -224,7 +224,10 @@ saveBtn.addEventListener("click", (e) => {
   );
   const selectPmam = pmamLi[selectPmamIndex].innerHTML;
 
-
+  document.querySelector(".save-btn").addEventListener("click", () => {
+    turnOffAlarmMode();
+    turnOnAlarmMode();
+  });
 
   if (selectPmam == "PM") {
     selectedHour = (parseInt(selectedHour) + 12).toString();
@@ -372,3 +375,112 @@ function closeRingList() {
   ringtonList.style = 'display: none'
   blurCover.style = 'display:none'
 }
+
+
+let animationFrameId;
+let totalMilliseconds;
+let elapsedTime = 0;
+let isAlarmMode = false;
+
+function startTimer() {
+  const ssRem = parseFloat(document.getElementById("ss-rem").textContent);
+  const mmRem = parseFloat(document.getElementById("mm-rem").textContent);
+  const hhRem = parseFloat(document.getElementById("hh-rem").textContent);
+  const ddRem = parseFloat(document.getElementById("dd-rem").textContent);
+  const timerPercentage = document.querySelector(".timer-percentage");
+
+  totalMilliseconds = (ddRem * 24 * 3600 + hhRem * 3600 + mmRem * 60 + ssRem) * 1000;
+
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+  }
+
+  elapsedTime = 0;
+  timerPercentage.textContent = "0%";
+
+  // Check if it's alarm mode
+  if (isAlarmMode) {
+    applyStylesAndAnimations(ddRem, hhRem, mmRem, ssRem);
+    updateClock(totalMilliseconds, timerPercentage);
+  } else {
+    // Do something else when not in alarm mode
+    // You may want to add additional logic or functions here
+  }
+}
+
+function applyStylesAndAnimations(ddRem, hhRem, mmRem, ssRem) {
+  const circles = document.querySelectorAll(".circle");
+  const secCircle = circles[0];
+  const minCircle = circles[1];
+  const hrCircle = circles[2];
+
+  const totalSeconds = ddRem * 24 * 3600 + hhRem * 3600 + mmRem * 60 + ssRem;
+  const secAnimDuration = totalSeconds * 1000;
+  const minAnimDuration = totalSeconds * 1000;
+  const hrAnimDuration = totalSeconds * 1000;
+
+  secCircle.style.setProperty("--sec-anim-duration", `${secAnimDuration}ms`);
+  minCircle.style.setProperty("--min-anim-duration", `${minAnimDuration}ms`);
+  hrCircle.style.setProperty("--hr-anim-duration", `${hrAnimDuration}ms`);
+
+  secCircle.querySelector("circle").style.strokeDasharray = "760";
+  secCircle.querySelector("circle").style.strokeDashoffset = "710";
+  secCircle.querySelector("circle").style.animation = `rotateCounterClockwise ${secAnimDuration}ms linear infinite`;
+
+  minCircle.querySelector("circle").style.strokeDasharray = "760";
+  minCircle.querySelector("circle").style.strokeDashoffset = "0";
+  minCircle.querySelector("circle").style.animation = `rotateCounterClockwise ${minAnimDuration}ms linear infinite`;
+
+  hrCircle.querySelector("circle").style.strokeDasharray = "43200";
+  hrCircle.querySelector("circle").style.strokeDashoffset = "0";
+  hrCircle.querySelector("circle").style.animation = `rotateCounterClockwise ${hrAnimDuration}ms linear infinite`;
+}
+
+function updateClock(totalMilliseconds, timerPercentage) {
+  const currentTime = performance.now();
+  elapsedTime = currentTime;
+
+  if (elapsedTime >= totalMilliseconds) {
+    timerPercentage.textContent = "100%";
+
+    const circles = document.querySelectorAll(".circle");
+    for (const circle of circles) {
+      circle.querySelector("circle").style.animation = "none";
+      circle.querySelector("circle").style.strokeDashoffset = "0";
+    }
+
+    return;
+  }
+
+  const percentage = (elapsedTime / totalMilliseconds) * 100;
+  timerPercentage.textContent = percentage.toFixed(2) + "%";
+
+  // Correctly call applyStylesAndAnimations with the updated arguments
+  applyStylesAndAnimations(
+    parseFloat(document.getElementById("dd-rem").textContent),
+    parseFloat(document.getElementById("hh-rem").textContent),
+    parseFloat(document.getElementById("mm-rem").textContent),
+    parseFloat(document.getElementById("ss-rem").textContent)
+  );
+
+  animationFrameId = requestAnimationFrame(() => updateClock(totalMilliseconds, timerPercentage));
+}
+
+// Function to handle turning off the alarm mode
+function turnOffAlarmMode() {
+  isAlarmMode = false;
+  // Add any additional logic or UI changes needed when turning off alarm mode
+}
+
+// Function to handle turning on the alarm mode
+function turnOnAlarmMode() {
+  isAlarmMode = true;
+  // Add any additional logic or UI changes needed when turning on alarm mode
+}
+
+// Attach event listeners to the buttons
+document.querySelector(".save-btn").addEventListener("click", turnOffAlarmMode);
+document.querySelector(".save-btn").addEventListener("click", turnOnAlarmMode);
+
+// Start the timer initially
+startTimer();
