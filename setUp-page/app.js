@@ -224,10 +224,10 @@
     );
     const selectPmam = pmamLi[selectPmamIndex].innerHTML;
 
-    document.querySelector(".save-btn").addEventListener("click", () => {
-      turnOffAlarmMode();
-      turnOnAlarmMode();
-    });
+    // document.querySelector(".save-btn").addEventListener("click", () => {
+    //   // turnOffAlarmMode();
+    //   turnOnAlarmMode();
+    // });
 
     if (selectPmam == "PM") {
       selectedHour = (parseInt(selectedHour) + 12).toString();
@@ -396,41 +396,82 @@
       updateClock(totalMilliseconds, timerPercentage);
   }
   
+  // function applyStylesAndAnimations(hoursInput, minutesInput, secondsInput) {
+  //     // Calculate the animation duration for each ring and dot
+  //     const circles = document.querySelectorAll('.circle');
+  //     const secCircle = circles[0];
+  //     const minCircle = circles[1];
+  //     const hrCircle = circles[2];
+  
+  //     // Calculate the total time in seconds
+  //     const totalSeconds = (hoursInput * 3600 + minutesInput * 60 + secondsInput);
+  
+  //     // Calculate the animation durations for dots
+  //     const secAnimDuration = totalSeconds * 1000;
+  //     const minAnimDuration = totalSeconds * 1000;
+  //     const hrAnimDuration = totalSeconds * 1000;
+  
+  //     // Set custom properties for animation durations
+  //     secCircle.style.setProperty('--sec-anim-duration', `${secAnimDuration}ms`);
+  //     minCircle.style.setProperty('--min-anim-duration', `${minAnimDuration}ms`);
+  //     hrCircle.style.setProperty('--hr-anim-duration', `${hrAnimDuration}ms`);
+  
+  //     // Apply styles and animations to each circle
+  //     secCircle.querySelector('circle').style.strokeDasharray = '760';
+  //     secCircle.querySelector('circle').style.strokeDashoffset = '710';
+  //     secCircle.querySelector('circle').style.animation = `rotateCounterClockwise ${secAnimDuration}ms linear infinite`;
+  
+  //     minCircle.querySelector('circle').style.strokeDasharray = '760';
+  //     minCircle.querySelector('circle').style.strokeDashoffset = '0';
+  //     minCircle.querySelector('circle').style.animation = `rotateCounterClockwise ${minAnimDuration}ms linear infinite`;
+  
+  //     hrCircle.querySelector('circle').style.strokeDasharray = '43200'; // 12 hours (360 degrees)
+  //     hrCircle.querySelector('circle').style.strokeDashoffset = '0'; // Start with a full circle
+  //     hrCircle.querySelector('circle').style.animation = `rotateCounterClockwise ${hrAnimDuration}ms linear infinite`;
+  // }
+  
   function applyStylesAndAnimations(hoursInput, minutesInput, secondsInput) {
-      // Calculate the animation duration for each ring and dot
-      const circles = document.querySelectorAll('.circle');
-      const secCircle = circles[0];
-      const minCircle = circles[1];
-      const hrCircle = circles[2];
+    // Select the circles
+    const secCircle = document.querySelector('.sec-circle');
+    const minCircle = document.querySelector('.min-circle');
+    const hrCircle = document.querySelector('.hr-circle');
   
-      // Calculate the total time in seconds
-      const totalSeconds = (hoursInput * 3600 + minutesInput * 60 + secondsInput);
+    // Calculate the total time in seconds
+    const totalSeconds = (hoursInput * 3600 + minutesInput * 60 + secondsInput);
   
-      // Calculate the animation durations for dots
-      const secAnimDuration = totalSeconds * 1000;
-      const minAnimDuration = totalSeconds * 1000;
-      const hrAnimDuration = totalSeconds * 1000;
+    // Calculate the remaining seconds, minutes, and hours
+    const remainingSeconds = totalSeconds % 60;
+    const remainingMinutes = (totalSeconds / 60) % 60;
+    const remainingHours = (totalSeconds / 3600) % 12;
   
-      // Set custom properties for animation durations
-      secCircle.style.setProperty('--sec-anim-duration', `${secAnimDuration}ms`);
-      minCircle.style.setProperty('--min-anim-duration', `${minAnimDuration}ms`);
-      hrCircle.style.setProperty('--hr-anim-duration', `${hrAnimDuration}ms`);
+    // Calculate the animation durations based on real time seconds, minutes, and hours
+    const secAnimDuration = 60; // Each second animation should complete in 60 seconds
+    const minAnimDuration = 3600; // Each minute animation should complete in 3600 seconds (60 minutes)
+    const hrAnimDuration = 43200; // Each hour animation should complete in 43200 seconds (12 hours)
+    
+    // Set custom properties for animation durations
+    secCircle.style.setProperty('--sec-anim-duration', `${secAnimDuration}s`);
+    minCircle.style.setProperty('--min-anim-duration', `${minAnimDuration}s`);
+    hrCircle.style.setProperty('--hr-anim-duration', `${hrAnimDuration}s`);
   
-      // Apply styles and animations to each circle
-      secCircle.querySelector('circle').style.strokeDasharray = '760';
-      secCircle.querySelector('circle').style.strokeDashoffset = '710';
-      secCircle.querySelector('circle').style.animation = `rotateCounterClockwise ${secAnimDuration}ms linear infinite`;
+    // Calculate the strokeDashoffset based on the percentage of the time passed
+    const secDashOffset = (1 - remainingSeconds / 60) * 760;
+    const minDashOffset = (1 - remainingMinutes / 60) * 760;
+    const hrDashOffset = (1 - remainingHours / 12) * 760; // assuming 760 is the full circumference of the circle.
   
-      minCircle.querySelector('circle').style.strokeDasharray = '760';
-      minCircle.querySelector('circle').style.strokeDashoffset = '0';
-      minCircle.querySelector('circle').style.animation = `rotateCounterClockwise ${minAnimDuration}ms linear infinite`;
+    // Apply the styles and animations
+    secCircle.style.animation = `rotateCounterClockwise ${secAnimDuration}s linear infinite`;
+    secCircle.style.strokeDasharray = '760';
+    secCircle.style.strokeDashoffset = secDashOffset.toString();
   
-      hrCircle.querySelector('circle').style.strokeDasharray = '43200'; // 12 hours (360 degrees)
-      hrCircle.querySelector('circle').style.strokeDashoffset = '0'; // Start with a full circle
-      hrCircle.querySelector('circle').style.animation = `rotateCounterClockwise ${hrAnimDuration}ms linear infinite`;
+    minCircle.style.animation = `rotateCounterClockwise ${minAnimDuration}s linear infinite`;
+    minCircle.style.strokeDasharray = '760';
+    minCircle.style.strokeDashoffset = minDashOffset.toString();
+  
+    hrCircle.style.animation = `rotateCounterClockwise ${hrAnimDuration}s linear infinite`;
+    hrCircle.style.strokeDasharray = '760';
+    hrCircle.style.strokeDashoffset = hrDashOffset.toString();
   }
-  
-  
   
   function updateClock(totalMilliseconds, timerPercentage) {
       const currentTime = performance.now();
