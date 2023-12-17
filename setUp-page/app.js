@@ -299,6 +299,7 @@ setInterval(() => {
     lastTimeData.setStatus == "set"
   ) {
 
+    console.log('on')
   }
 }, 1000);
 
