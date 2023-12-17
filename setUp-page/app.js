@@ -72,20 +72,12 @@
           days += `<div class="day today active" date-value="${i}">${i}</div>`;
         }
       } else {
-<<<<<<< Updated upstream
         // For all other dates, if an event exists, append a 'div' for the date with an 'event' class, else append a 'div' only with 'day' class.
         if (event) {
           days += `<div class="day event" date-value="${i}">${i}</div>`;
         } else {
           days += `<div class="day" date-value="${i}">${i}</div>`;
         }
-=======
-        // If the selected day is in past, print alert and remove the 'active' class
-        
-        alert("Please select a date in the future.");
-        e.target.classList.remove("active");
-        
->>>>>>> Stashed changes
       }
     }
     // At the end, 'days' string contains markup for each day of the month with appropriate classes.
