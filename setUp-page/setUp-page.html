@@ -18,45 +18,31 @@
       <div id="RimTime-clock">
         <!-- Clock container -->
         <div class="clock">
-          <!-- Time container containing circles and timer percentage -->
           <div id="time">
-            <!-- Circle for seconds -->
-            <div class="circle" style="--clr: #ff2972">
-              <!-- Dots for seconds -->
-              <div class="dots sec_dot"></div>
-              <!-- SVG element for seconds circle -->
-              <svg>
-                <circle cx="120" cy="120" r="120" id="ss"></circle>
-              </svg>
-              <!-- Circle color indicator for seconds -->
-              <div class="circle-color color-sec"></div>
-            </div>
-            <!-- Circle for minutes -->
-            <div class="circle" style="--clr: #fee800">
-              <!-- Dots for minutes -->
-              <div class="dots min_dot"></div>
-              <!-- SVG element for minutes circle -->
-              <svg>
-                <circle cx="100" cy="100" r="100" id="mm"></circle>
-              </svg>
-              <!-- Circle color indicator for minutes -->
-              <div class="circle-color color-min"></div>
-            </div>
-            <!-- Circle for hours -->
-            <div class="circle" style="--clr: #04fc43">
-              <!-- Dots for hours -->
-              <div class="dots hr_dot"></div>
-              <!-- SVG element for hours circle -->
-              <svg>
-                <circle cx="80" cy="80" r="80" id="hh"></circle>
-              </svg>
-              <!-- Circle color indicator for hours -->
-              <div class="circle-color color-hr"></div>
-            </div>
-            <!-- Timer percentage display -->
-            <div class="timer-percentage">0%</div>
+              <div class="circle" style="--clr: #ff2972">
+                  <div class="dots sec_dot"></div>
+                  <svg>
+                      <circle cx="120" cy="120" r="120" id="ss"></circle>
+                  </svg>
+                  <div class="circle-color color-sec"></div>
+              </div>
+              <div class="circle" style="--clr: #fee800">
+                  <div class="dots min_dot"></div>
+                  <svg>
+                      <circle cx="100" cy="100" r="100" id="mm"></circle>
+                  </svg>
+                  <div class="circle-color color-min"></div>
+              </div>
+              <div class="circle" style="--clr: #04fc43">
+                  <div class="dots hr_dot"></div>
+                  <svg>
+                      <circle cx="80" cy="80" r="80" id="hh"></circle>
+                  </svg>
+                  <div class="circle-color color-hr"></div>
+              </div>
+              <div class="timer-percentage">0%</div>
           </div>
-        </div>
+      </div>
       </div>
       <!-- show remaining time -->
       <div id="RimTime-numbers">
@@ -138,7 +124,7 @@
         <div></div>
         <div></div>
       </div>
-      <div class="save-btn">tern on Alarm</div>
+      <div class="save-btn" role="button" onclick="startTimer()">turn on Alarm</div>
     </div>
     <script src="app.js"></script>
   </body>

@@ -1,10 +1,10 @@
 /* Keyframes for rotating counter-clockwise animation */
-@keyframes rotateCounterClockwise {
+@keyframes rotateClockwise {
   from {
-    stroke-dashoffset: 0;
+    transform: rotate(0deg);
   }
   to {
-    stroke-dashoffset: -750;
+    transform: rotate(360deg);
   }
 }
 
@@ -201,6 +201,43 @@ header {
 /* Alarm Style */
 
 /* Styling for the clock */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #2f363e;
+}
+
+.timer-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.timer-inputs {
+  display: flex;
+}
+
+.timer-inputs input {
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.timer-start-button {
+  margin-top: 10px;
+}
+
 .clock {
   position: relative;
   width: 280px;
@@ -212,19 +249,16 @@ header {
   box-shadow: inset 5px 5px 25px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
 }
-/* Styling for the time container within the clock */
 
 #time {
   position: relative;
-  width: 70%; /* Adjust the width of the clock to your preference */
-  height: 70%; /* Adjust the height of the clock to your preference */
+  width: 250px;
+  height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
-  transform-style: preserve-3d;
-  transition: transform 0.5s ease;
 }
-/* Styling for circles within the time container */
+
 #time .circle {
   position: absolute;
   display: flex;
@@ -232,25 +266,21 @@ header {
   align-items: center;
 }
 
-/* Styling for the SVG elements within the circles */
 #time .circle svg {
   position: relative;
   transform: rotate(270deg);
 }
 
-/* Styling for the first circle's SVG */
 #time .circle:nth-child(1) svg {
   height: 250px;
   width: 250px;
 }
 
-/* Styling for the second circle's SVG */
 #time .circle:nth-child(2) svg {
   height: 210px;
   width: 210px;
 }
 
-/* Styling for the third circle's SVG */
 #time .circle:nth-child(3) svg {
   height: 170px;
   width: 170px;
@@ -284,95 +314,101 @@ header {
   stroke-dasharray: 510; /* Total length of the stroke */
   stroke-dashoffset: 510; /* Initially, no part of the stroke is visible */
 }
-/* Styling for dots */
+/* Add styles for the dots */
 .dots {
-  position: absolute; /* Positioned absolutely within its containing element */
+  position: absolute;
   width: 100%;
   height: 100%;
-  display: flex; /* Use flexbox for alignment */
-  align-items: flex-start; /* Align items to the start of the cross axis */
-  justify-content: center; /* Center items along the main axis */
-  z-index: 10; /* Set a higher z-index for stacking order */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 10;
 }
 
-/* Styling for the pseudo-element before each dot */
 .dots::before {
-  content: ""; /* Empty content for pseudo-element */
-  position: absolute; /* Positioned absolutely within its parent .dots */
-  top: -3px; /* Offset from the top by 3px */
-  width: 15px; /* Set width */
-  height: 15px; /* Set height */
-  background: var(--clr); /* Set background color from CSS variable */
-  border-radius: 50%; /* Make it a circle by setting border-radius to 50% */
-  box-shadow:  /* Add box shadow for a decorative effect */ 0 0 40px var(--clr),
-    /* Shadow with 40px blur */ 0 0 40px var(--clr),
-    /* Another shadow with 40px blur */ 0 0 60px var(--clr),
-    /* Shadow with 60px blur */ 0 0 80px var(--clr); /* Shadow with 80px blur */
+  content: "";
+  position: absolute;
+  top: -3px;
+  width: 15px;
+  height: 15px;
+  background: var(--clr);
+  border-radius: 50%;
+  box-shadow: 0 0 40px var(--clr), 0 0 40px var(--clr), 0 0 60px var(--clr),
+    0 0 80px var(--clr);
 }
-/* Styling for animation of the dots on each ring */
 
-/* Animation for seconds dot */
+/* Add styles for the dots on each ring */
 .sec_dot::before {
   animation: rotateCounterClockwise var(--sec-anim-duration) linear infinite;
 }
 
-/* Animation for minutes dot */
 .min_dot::before {
   animation: rotateCounterClockwise var(--min-anim-duration) linear infinite;
 }
 
-/* Animation for hours dot */
 .hr_dot::before {
   animation: rotateCounterClockwise var(--hr-anim-duration) linear infinite;
 }
 
-/* Custom property to control rotation for seconds ring */
 [data-ring="ss"] {
   --rotation: 0deg;
 }
 
-/* Custom property to control rotation for minutes ring */
 [data-ring="mm"] {
   --rotation: 0deg;
 }
 
-/* Custom property to control rotation for hours ring */
 [data-ring="hh"] {
   --rotation: 0deg;
 }
-/* Styling for the time span within the clock */
-
 #time span {
-  position: absolute; /* Positioned absolutely within its parent */
-  inset: 55px; /* Positioned 55px from all edges */
-  text-align: center; /* Center-align text */
-  color: #999; /* Set text color */
-  font-family: consolas; /* Use Consolas font family */
-  transform: rotate(
-    calc(-30deg * var(--i))
-  ); /* Rotate based on a custom property */
+  position: absolute;
+  inset: 55px;
+  text-align: center;
+  color: #999;
+  font-family: consolas;
+  transform: rotate(calc(-30deg * var(--i)));
 }
-
-/* Styling for the "b" element within the time span */
 
 #time span b {
-  font-size: 0.75em; /* Set font size to 0.75em */
-  font-weight: 500; /* Set font weight to 500 (semi-bold) */
-  display: inline-block; /* Make it an inline-block element */
+  font-size: 0.75em;
+  font-weight: 500;
+  display: inline-block;
 }
-/* Styling for the timer container */
 
 .timer-container {
-  position: absolute; /* Positioned absolutely within its containing element */
-  top: 50%; /* Positioned at the vertical center of its containing element */
-  left: 10px; /* Positioned 10px from the left edge of its containing element */
-  display: flex; /* Use flexbox for alignment */
-  align-items: center; /* Center-align items vertically */
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  display: flex;
+  align-items: center;
 }
 
-/* Style the timer input fields within the container */
-
+/* Style the timer input fields */
 .timer-container input {
-  margin-right: 10px; /* Set right margin to create spacing between input fields */
-  padding: 5px; /* Set padding for input fields */
+  margin-right: 10px;
+  padding: 5px;
+}
+
+@keyframes rotateCounterClockwise {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -750;
+  }
+}
+
+.timer-progress {
+  width: 100%;
+  margin-top: 10px;
+  height: 20px;
+  background-color: #ccc;
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background-color: #007bff;
+  transition: width 1s linear;
 }
