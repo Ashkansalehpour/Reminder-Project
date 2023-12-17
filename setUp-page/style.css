@@ -1,10 +1,10 @@
 /* Keyframes for rotating counter-clockwise animation */
 @keyframes rotateClockwise {
   from {
-    transform: rotate(0deg);
+    stroke-dashoffset: 0;
   }
   to {
-    transform: rotate(360deg);
+    stroke-dashoffset: -750;
   }
 }
 
