@@ -1,401 +1,401 @@
-@keyframes rotateCounterClockwise {
-  to {
+  @keyframes rotateCounterClockwise {
+    to {
+        stroke-dashoffset: 0;
+    }
+  }
+
+  .animate-ring {
+    animation: rotateCounterClockwise 1s linear forwards; /* Adjust '1s' to control the speed */
+  }
+
+  body {
+    background: #141414;
+    margin: 0;
+  }
+  .blur-cover {
+    width: 100%;
+    height: 100%;
+    background-color: #454545cc;
+    filter: blur(5px);
+    position: absolute;
+    display: none;
+    z-index: 1;
+  }
+  #setUp-page-container {
+    width: 99%;
+    background-color: #141414;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  header {
+    width: 100%;
+    height: 50px;
+    background-color: #141414;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+  }
+
+  .back-icon {
+    height: 35px;
+  }
+
+  .trash-icon {
+    height: 40px;
+  }
+
+  .trash-icon,
+  .back-icon {
+    cursor: pointer;
+  }
+
+  /* -=-=-==-=-=-=-=-=-=-=-=-=- */
+  #RimTime-clock {
+    width: 100%;
+    height: 370px;
+    overflow: hidden;
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  #RimTime-numbers,
+  #RimTime-leters {
+    width: 80%;
+    margin: 0 auto;
+    margin-top:   10px;
+    font-size: 30px;
+    text-align: center;
+    color: #fff;
+  }
+
+  #RimTime-leters {
+    font-size: 25px;
+  }
+
+  #RimTime-numbers :nth-child(1),
+  #RimTime-leters :nth-child(1) {
+    color: #2957fb;
+  }
+
+  #RimTime-numbers :nth-child(3),
+  #RimTime-leters :nth-child(3) {
+    color: #fb296d;
+  }
+
+  #RimTime-numbers :nth-child(5),
+  #RimTime-leters :nth-child(5) {
+    color: #fae60e;
+  }
+
+  #RimTime-numbers :nth-child(6),
+  #RimTime-numbers :nth-child(7),
+  #RimTime-leters :nth-child(6),
+  #RimTime-leters :nth-child(7) {
+    color: #1dff5d;
+  }
+
+  /* ----------------------- */
+
+  #Description-container {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: #252525;
+    border-radius: 10px;
+  }
+  #Description-container span {
+    color: #bababa;
+    margin: 10px;
+  }
+  #textarea-contaner {
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    /* margin-top: 10px; */
+  }
+
+  #textarea-contaner textarea {
+    resize: none;
+    width: 97%;
+    height: 70px;
+    background-color: #252525;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    color: #505050;
+  }
+
+  #edit-time-box {
+    width: 95%;
+    height: 35%;
+    background-color: #252525;
+    margin: 0 auto;
+    margin-top: 3%;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #rington-box {
+    width: 95%;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #252525;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+  }
+
+  #rington-box :nth-child(2) {
+    opacity: 0.5;
+  }
+  /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+  .rington-list {
+    width: 95%;
+    height: 60%;
+    top: 30%;
+    position: absolute;
+    left: 2.5%;
+    background-color: #2957fb;
+    margin: 0 auto;
+    display: none;
+    z-index: 1;
+    /* position: relative; */
+  }
+
+  .close-list-btn {
+    width: 40px;
+    margin-left: 88%;
+    cursor: pointer;
+    position: absolute;
+  }
+
+  .save-btn {
+    width: 60%;
+    color: #1dff5d;
+    height: 40px;
+    margin: 0 auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #252525;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  /* Alarm Style */
+
+
+
+
+  .timer-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  .timer-inputs {
+    display: flex;
+  }
+
+  .timer-inputs input {
+    margin-right: 10px;
+    padding: 5px;
+  }
+
+  .timer-start-button {
+    margin-top: 10px;
+  }
+
+  .clock {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1.2);
+    box-shadow: inset 5px 5px 25px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+  }
+
+  #time {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #time .circle {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #time .circle svg {
+    position: relative;
+    transform: rotate(270deg);
+  }
+
+  #time .circle:nth-child(1) svg {
+    height: 250px;
+    width: 250px;
+  }
+
+  #time .circle:nth-child(2) svg {
+    height: 210px;
+    width: 210px;
+  }
+
+  #time .circle:nth-child(3) svg {
+    height: 170px;
+    width: 170px;
+  }
+
+  /* Styling for the inner circles within the SVG elements */
+  #time .circle svg circle {
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    stroke-width: 5;
+    stroke: var(--clr); /* Color of the stroke (border) */
+    transform: translate(5px, 5px); /* Offset the circle by 5px */
+    opacity: 0.25; /* Set opacity to 0.25 */
+  }
+
+  /* Styling for the first circle's SVG circle */
+  #time .circle:nth-child(1) svg circle {
+    stroke-dasharray: 760; /* Total length of the stroke */
+    stroke-dashoffset: 760; /* Initially, no part of the stroke is visible */
+  }
+
+  /* Styling for the second circle's SVG circle */
+  #time .circle:nth-child(2) svg circle {
+    stroke-dasharray: 630; /* Total length of the stroke */
+    stroke-dashoffset: 630; /* Initially, no part of the stroke is visible */
+  }
+
+  /* Styling for the third circle's SVG circle */
+  #time .circle:nth-child(3) svg circle {
+    stroke-dasharray: 510; /* Total length of the stroke */
+    stroke-dashoffset: 510; /* Initially, no part of the stroke is visible */
+  }
+  /* Add styles for the dots */
+  .dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .dots::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    width: 15px;
+    height: 15px;
+    background: var(--clr);
+    border-radius: 50%;
+    box-shadow: 0 0 40px var(--clr), 0 0 40px var(--clr), 0 0 60px var(--clr),
+      0 0 80px var(--clr);
+  }
+
+  /* Add styles for the dots on each ring */
+  .sec_dot::before {
+    animation: rotateCounterClockwise var(--sec-anim-duration) linear infinite;
+  }
+
+  .min_dot::before {
+    animation: rotateCounterClockwise var(--min-anim-duration) linear infinite;
+  }
+
+  .hr_dot::before {
+    animation: rotateCounterClockwise var(--hr-anim-duration) linear infinite;
+  }
+
+  [data-ring="ss"] {
+    --rotation: 0deg;
+  }
+
+  [data-ring="mm"] {
+    --rotation: 0deg;
+  }
+
+  [data-ring="hh"] {
+    --rotation: 0deg;
+  }
+  #time span {
+    position: absolute;
+    inset: 55px;
+    text-align: center;
+    color: #999;
+    font-family: consolas;
+    transform: rotate(calc(-30deg * var(--i)));
+  }
+
+  #time span b {
+    font-size: 0.75em;
+    font-weight: 500;
+    display: inline-block;
+  }
+
+  .timer-container {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Style the timer input fields */
+  .timer-container input {
+    margin-right: 10px;
+    padding: 5px;
+  }
+
+  @keyframes rotateCounterClockwise {
+    from {
       stroke-dashoffset: 0;
+    }
+    to {
+      stroke-dashoffset: -750;
+    }
   }
-}
 
-.animate-ring {
-  animation: rotateCounterClockwise 1s linear forwards; /* Adjust '1s' to control the speed */
-}
-
-body {
-  background: #141414;
-  margin: 0;
-}
-.blur-cover {
-  width: 100%;
-  height: 100%;
-  background-color: #454545cc;
-  filter: blur(5px);
-  position: absolute;
-  display: none;
-  z-index: 1;
-}
-#setUp-page-container {
-  width: 99%;
-  background-color: #141414;
-  margin: 0 auto;
-  position: relative;
-}
-
-header {
-  width: 100%;
-  height: 50px;
-  background-color: #141414;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 10px;
-}
-
-.back-icon {
-  height: 35px;
-}
-
-.trash-icon {
-  height: 40px;
-}
-
-.trash-icon,
-.back-icon {
-  cursor: pointer;
-}
-
-/* -=-=-==-=-=-=-=-=-=-=-=-=- */
-#RimTime-clock {
-  width: 100%;
-  height: 370px;
-  overflow: hidden;
-  perspective: 1000px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-#RimTime-numbers,
-#RimTime-leters {
-  width: 80%;
-  margin: 0 auto;
-  margin-top:   10px;
-  font-size: 30px;
-  text-align: center;
-  color: #fff;
-}
-
-#RimTime-leters {
-  font-size: 25px;
-}
-
-#RimTime-numbers :nth-child(1),
-#RimTime-leters :nth-child(1) {
-  color: #2957fb;
-}
-
-#RimTime-numbers :nth-child(3),
-#RimTime-leters :nth-child(3) {
-  color: #fb296d;
-}
-
-#RimTime-numbers :nth-child(5),
-#RimTime-leters :nth-child(5) {
-  color: #fae60e;
-}
-
-#RimTime-numbers :nth-child(6),
-#RimTime-numbers :nth-child(7),
-#RimTime-leters :nth-child(6),
-#RimTime-leters :nth-child(7) {
-  color: #1dff5d;
-}
-
-/* ----------------------- */
-
-#Description-container {
-  width: 95%;
-  margin: 0 auto;
-  margin-top: 20px;
-  background-color: #252525;
-  border-radius: 10px;
-}
-#Description-container span {
-  color: #bababa;
-  margin: 10px;
-}
-#textarea-contaner {
-  width: 100%;
-  color: #fff;
-  text-align: center;
-  /* margin-top: 10px; */
-}
-
-#textarea-contaner textarea {
-  resize: none;
-  width: 97%;
-  height: 70px;
-  background-color: #252525;
-  border: none;
-  outline: none;
-  border-radius: 10px;
-  color: #505050;
-}
-
-#edit-time-box {
-  width: 95%;
-  height: 35%;
-  background-color: #252525;
-  margin: 0 auto;
-  margin-top: 3%;
-  border-radius: 10px;
-  cursor: pointer;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#rington-box {
-  width: 95%;
-  height: 50px;
-  margin: 0 auto;
-  margin-top: 20px;
-  border-radius: 10px;
-  background-color: #252525;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: #fff;
-}
-
-#rington-box :nth-child(2) {
-  opacity: 0.5;
-}
-/* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
-.rington-list {
-  width: 95%;
-  height: 60%;
-  top: 30%;
-  position: absolute;
-  left: 2.5%;
-  background-color: #2957fb;
-  margin: 0 auto;
-  display: none;
-  z-index: 1;
-  /* position: relative; */
-}
-
-.close-list-btn {
-  width: 40px;
-  margin-left: 88%;
-  cursor: pointer;
-  position: absolute;
-}
-
-.save-btn {
-  width: 60%;
-  color: #1dff5d;
-  height: 40px;
-  margin: 0 auto;
-  margin-top: 3%;
-  margin-bottom: 3%;
-  text-align: center;
-  border-radius: 10px;
-  background-color: #252525;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-/* Alarm Style */
-
-
-
-
-.timer-controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
-
-.timer-inputs {
-  display: flex;
-}
-
-.timer-inputs input {
-  margin-right: 10px;
-  padding: 5px;
-}
-
-.timer-start-button {
-  margin-top: 10px;
-}
-
-.clock {
-  position: relative;
-  width: 280px;
-  height: 280px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: scale(1.2);
-  box-shadow: inset 5px 5px 25px rgba(0, 0, 0, 0.25);
-  border-radius: 50%;
-}
-
-#time {
-  position: relative;
-  width: 250px;
-  height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#time .circle {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#time .circle svg {
-  position: relative;
-  transform: rotate(270deg);
-}
-
-#time .circle:nth-child(1) svg {
-  height: 250px;
-  width: 250px;
-}
-
-#time .circle:nth-child(2) svg {
-  height: 210px;
-  width: 210px;
-}
-
-#time .circle:nth-child(3) svg {
-  height: 170px;
-  width: 170px;
-}
-
-/* Styling for the inner circles within the SVG elements */
-#time .circle svg circle {
-  width: 100%;
-  height: 100%;
-  fill: transparent;
-  stroke-width: 5;
-  stroke: var(--clr); /* Color of the stroke (border) */
-  transform: translate(5px, 5px); /* Offset the circle by 5px */
-  opacity: 0.25; /* Set opacity to 0.25 */
-}
-
-/* Styling for the first circle's SVG circle */
-#time .circle:nth-child(1) svg circle {
-  stroke-dasharray: 760; /* Total length of the stroke */
-  stroke-dashoffset: 760; /* Initially, no part of the stroke is visible */
-}
-
-/* Styling for the second circle's SVG circle */
-#time .circle:nth-child(2) svg circle {
-  stroke-dasharray: 630; /* Total length of the stroke */
-  stroke-dashoffset: 630; /* Initially, no part of the stroke is visible */
-}
-
-/* Styling for the third circle's SVG circle */
-#time .circle:nth-child(3) svg circle {
-  stroke-dasharray: 510; /* Total length of the stroke */
-  stroke-dashoffset: 510; /* Initially, no part of the stroke is visible */
-}
-/* Add styles for the dots */
-.dots {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  z-index: 10;
-}
-
-.dots::before {
-  content: "";
-  position: absolute;
-  top: -3px;
-  width: 15px;
-  height: 15px;
-  background: var(--clr);
-  border-radius: 50%;
-  box-shadow: 0 0 40px var(--clr), 0 0 40px var(--clr), 0 0 60px var(--clr),
-    0 0 80px var(--clr);
-}
-
-/* Add styles for the dots on each ring */
-.sec_dot::before {
-  animation: rotateCounterClockwise var(--sec-anim-duration) linear infinite;
-}
-
-.min_dot::before {
-  animation: rotateCounterClockwise var(--min-anim-duration) linear infinite;
-}
-
-.hr_dot::before {
-  animation: rotateCounterClockwise var(--hr-anim-duration) linear infinite;
-}
-
-[data-ring="ss"] {
-  --rotation: 0deg;
-}
-
-[data-ring="mm"] {
-  --rotation: 0deg;
-}
-
-[data-ring="hh"] {
-  --rotation: 0deg;
-}
-#time span {
-  position: absolute;
-  inset: 55px;
-  text-align: center;
-  color: #999;
-  font-family: consolas;
-  transform: rotate(calc(-30deg * var(--i)));
-}
-
-#time span b {
-  font-size: 0.75em;
-  font-weight: 500;
-  display: inline-block;
-}
-
-.timer-container {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  display: flex;
-  align-items: center;
-}
-
-/* Style the timer input fields */
-.timer-container input {
-  margin-right: 10px;
-  padding: 5px;
-}
-
-@keyframes rotateCounterClockwise {
-  from {
-    stroke-dashoffset: 0;
+  .timer-progress {
+    width: 100%;
+    margin-top: 10px;
+    height: 20px;
+    background-color: #ccc;
   }
-  to {
-    stroke-dashoffset: -750;
+
+  .progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: #007bff;
+    transition: width 1s linear;
   }
-}
-
-.timer-progress {
-  width: 100%;
-  margin-top: 10px;
-  height: 20px;
-  background-color: #ccc;
-}
-
-.progress-bar {
-  width: 0;
-  height: 100%;
-  background-color: #007bff;
-  transition: width 1s linear;
-}

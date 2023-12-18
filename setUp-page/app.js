@@ -224,11 +224,6 @@ saveBtn.addEventListener("click", (e) => {
   );
   const selectPmam = pmamLi[selectPmamIndex].innerHTML;
 
-  // document.querySelector(".save-btn").addEventListener("click", () => {
-  //   // turnOffAlarmMode();
-  //   turnOnAlarmMode();
-  // });
-
   if (selectPmam == "PM") {
     selectedHour = (parseInt(selectedHour) + 12).toString();
     remainingTime()
@@ -381,23 +376,76 @@ let totalMilliseconds;
 let elapsedTime = 0;
 
 function startTimer() {
+    // Cancel any existing timers
+
   const daysInput = parseInt(document.getElementById('dd-rem').textContent);
   const hoursInput = parseInt(document.getElementById('hh-rem').textContent);
   const minutesInput = parseInt(document.getElementById('mm-rem').textContent);
-  
+
   // Assuming you don't have seconds, but you could add them as needed.
   const secondsInput = 0;
+  const daysSpan = document.getElementById('dd-rem');
+  const hoursSpan = document.getElementById('hh-rem');
+  const minutesSpan = document.getElementById('mm-rem');
+  const secondsSpan = document.getElementById('ss-rem');
+  if (rimTimes && rimTimes.intervalId) {
+    clearInterval(rimTimes.intervalId);
+    rimTimes.intervalId = null;
+  }
+  const endTime = new Date();
+  endTime.setDate(endTime.getDate() + daysInput);
+  endTime.setHours(endTime.getHours() + hoursInput);
+  endTime.setMinutes(endTime.getMinutes() + minutesInput);
+  endTime.setSeconds(0); // setting seconds to 0 as we don't handle seconds in the input
 
-  totalMilliseconds = ((daysInput * 24 + hoursInput) * 60 + minutesInput) * 60 * 1000;
+  // Update the countdown every second
+  const intervalId = setInterval(() => {
+    const currentTime = new Date();
+    const timeDiff = endTime - currentTime;
+
+    if (timeDiff <= 0) {
+      clearInterval(intervalId);
+      alert("Time is up!");
+      return;
+    }
+    
+    // Calculate and update the remaining time components
+    const remainingDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    const remainingHours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const remainingMinutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+    const remainingSeconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+    daysSpan.textContent = remainingDays < 10 ? '0' + remainingDays : remainingDays;
+    hoursSpan.textContent = remainingHours < 10 ? '0' + remainingHours : remainingHours;
+    minutesSpan.textContent = remainingMinutes < 10 ? '0' + remainingMinutes : remainingMinutes;
+    secondsSpan.textContent = remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds;
+  }, 1000);
+  rimTimes = { intervalId: intervalId };
 
   if (animationFrameId) {
-      cancelAnimationFrame(animationFrameId);
+    cancelAnimationFrame(animationFrameId);
   }
 
   elapsedTime = 0;
   applyStylesAndAnimations(daysInput, hoursInput, minutesInput);
   updateClock(totalMilliseconds);
-} 
+  const selectedHour = lastTimeData.hours;
+  const selectedMinute = lastTimeData.minutes;
+  
+  // Convert selected time to the remaining time in milliseconds
+  const now = new Date();
+  const selectedTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), selectedHour, selectedMinute);
+  totalMilliseconds = selectedTime - now;
+
+  // Only start the timer if the selected time is in the future
+  if (totalMilliseconds > 0) {
+    applyStylesAndAnimations(selectedHour, selectedMinute);
+    updateClock(totalMilliseconds);
+  } else {
+    alert('Selected time must be in the future.');
+  }
+}
+saveBtn.addEventListener('click', startTimer);
 
 function applyStylesAndAnimations(daysInput, hoursInput, minutesInput) {
   const secRing = document.getElementById('ss');
@@ -405,7 +453,7 @@ function applyStylesAndAnimations(daysInput, hoursInput, minutesInput) {
   const hrRing = document.getElementById('hh');
 
   const totalSeconds = (daysInput * 24 * 3600 + hoursInput * 3600 + minutesInput * 60);
-  
+
   // Convert time to animation duration for the rings.
   const secAnimDuration = totalSeconds * 1000;
   const minAnimDuration = totalSeconds * 1000;
@@ -426,16 +474,16 @@ function updateClock(totalMilliseconds) {
   const startTime = performance.now();
 
   function update() {
-      const currentTime = performance.now();
-      elapsedTime = currentTime - startTime;
+    const currentTime = performance.now();
+    elapsedTime = currentTime - startTime;
 
-      if (elapsedTime >= totalMilliseconds) {
-          // Timer is up. Reset everything
-          stopAnimations();
-          return;
-      }
-      
-      animationFrameId = requestAnimationFrame(update);
+    if (elapsedTime >= totalMilliseconds) {
+      // Timer is up. Reset everything
+      stopAnimations();
+      return;
+    }
+
+    animationFrameId = requestAnimationFrame(update);
   }
 
   update();
@@ -464,3 +512,34 @@ function stopAnimations() {
 }
 
 saveBtn.addEventListener('click', startTimer);
+let alarmSet = false;
+
+saveBtn.addEventListener("click", () => {
+  if (!alarmSet) {
+    // Code to activate the alarm goes here.
+    activateAlarm();
+    saveBtn.textContent = 'Turn off Alarm';
+    saveBtn.style.color = '#FB296D';
+  } else {
+    // Code to deactivate the alarm goes here.
+    deactivateAlarm();
+    saveBtn.textContent = 'Turn on Alarm';
+    saveBtn.style.color = '#1DFF5D';
+  }
+  // Toggle the alarm state
+  alarmSet = !alarmSet;
+  // Call the remainingTime() here to reflect the countdown in the RimTime-numbers
+  remainingTime();
+  // Make sure that this starts the SVG ring animation
+  startTimer();
+});
+
+function activateAlarm() {
+  // Logic to start the alarm clock
+  startTimer();
+}
+
+function deactivateAlarm() {
+  // Logic to stop the alarm clock
+  stopAnimations();
+}
