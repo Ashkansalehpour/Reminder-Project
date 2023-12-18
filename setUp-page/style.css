@@ -1,11 +1,11 @@
-/* Keyframes for rotating counter-clockwise animation */
-@keyframes rotateClockwise {
-  from {
-    stroke-dashoffset: 0;
-  }
+@keyframes rotateCounterClockwise {
   to {
-    stroke-dashoffset: -750;
+      stroke-dashoffset: 0;
   }
+}
+
+.animate-ring {
+  animation: rotateCounterClockwise 1s linear forwards; /* Adjust '1s' to control the speed */
 }
 
 body {

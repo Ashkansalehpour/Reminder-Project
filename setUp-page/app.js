@@ -380,89 +380,86 @@ let totalMilliseconds;
 let elapsedTime = 0;
 
 function startTimer() {
-  // Get hours, minutes, and seconds from span elements
-  const daysInput = parseInt(document.getElementById('dd-rem').innerText, 10);
-  const hoursInput = parseInt(document.getElementById('hh-rem').innerText, 10);
-  const minutesInput = parseInt(document.getElementById('mm-rem').innerText, 10);
-  const secondsInput = 0; // Assuming seconds are always 0
+  const daysInput = parseInt(document.getElementById('dd-rem').textContent);
+  const hoursInput = parseInt(document.getElementById('hh-rem').textContent);
+  const minutesInput = parseInt(document.getElementById('mm-rem').textContent);
+  
+  // Assuming you don't have seconds, but you could add them as needed.
+  const secondsInput = 0;
 
-  // Calculate total milliseconds based on the input values
   totalMilliseconds = ((daysInput * 24 + hoursInput) * 60 + minutesInput) * 60 * 1000;
 
   if (animationFrameId) {
-    cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(animationFrameId);
   }
 
   elapsedTime = 0;
-  applyStylesAndAnimations(hoursInput, minutesInput, secondsInput);
+  applyStylesAndAnimations(daysInput, hoursInput, minutesInput);
   updateClock(totalMilliseconds);
-}   
+} 
 
 function applyStylesAndAnimations(daysInput, hoursInput, minutesInput) {
-  // Calculate the animation duration for each ring and dot
-  const circles = document.querySelectorAll('.circle');
-  const secCircle = circles[0];
-  const minCircle = circles[1];
-  const hrCircle = circles[2];
+  const secRing = document.getElementById('ss');
+  const minRing = document.getElementById('mm');
+  const hrRing = document.getElementById('hh');
 
-  // Calculate the total time in seconds
-  const totalSeconds = (daysInput * 3600 + hoursInput * 60 + minutesInput);
-
-  // Calculate the animation durations for dots
+  const totalSeconds = (daysInput * 24 * 3600 + hoursInput * 3600 + minutesInput * 60);
+  
+  // Convert time to animation duration for the rings.
   const secAnimDuration = totalSeconds * 1000;
   const minAnimDuration = totalSeconds * 1000;
   const hrAnimDuration = totalSeconds * 1000;
 
-  // Set custom properties for animation durations
-  secCircle.style.setProperty('--sec-anim-duration', `${secAnimDuration}ms`);
-  minCircle.style.setProperty('--min-anim-duration', `${minAnimDuration}ms`);
-  hrCircle.style.setProperty('--hr-anim-duration', `${hrAnimDuration}ms`);
-
-  // Apply styles and animations to each circle
-  secCircle.querySelector('circle').style.strokeDasharray = '760';
-  secCircle.querySelector('circle').style.strokeDashoffset = '710';
-  secCircle.querySelector('circle').style.animation = `rotateCounterClockwise ${secAnimDuration}ms linear infinite`;
-
-  minCircle.querySelector('circle').style.strokeDasharray = '760';
-  minCircle.querySelector('circle').style.strokeDashoffset = '0';
-  minCircle.querySelector('circle').style.animation = `rotateCounterClockwise ${minAnimDuration}ms linear infinite`;
-
-  hrCircle.querySelector('circle').style.strokeDasharray = '43200'; // 12 hours (360 degrees)
-  hrCircle.querySelector('circle').style.strokeDashoffset = '0'; // Start with a full circle
-  hrCircle.querySelector('circle').style.animation = `rotateCounterClockwise ${hrAnimDuration}ms linear infinite`;
+  startRingAnimation(secRing, secAnimDuration);
+  startRingAnimation(minRing, minAnimDuration);
+  startRingAnimation(hrRing, hrAnimDuration);
 }
 
-
+function startRingAnimation(circle, duration) {
+  const length = circle.getTotalLength();
+  circle.style.strokeDasharray = length;
+  circle.style.strokeDashoffset = length;
+  circle.style.animation = `rotateCounterClockwise ${duration}ms linear infinite forwards`;
+}
 function updateClock(totalMilliseconds) {
   const startTime = performance.now();
 
   function update() {
-    const currentTime = performance.now();
-    elapsedTime = currentTime - startTime;
+      const currentTime = performance.now();
+      elapsedTime = currentTime - startTime;
 
-    if (elapsedTime >= totalMilliseconds) {
-      // Timer is up
-
-      // Stop the animations and set the circles to the completed state
-      const circles = document.querySelectorAll('.circle');
-      circles.forEach((circle) => {
-        const circleElement = circle.querySelector('circle');
-        circleElement.style.animation = 'none';
-        circleElement.style.strokeDashoffset = '0';
-      });
-
-      return;
-    }
-
-    // Calculate and display the percentage
-    const percentage = (elapsedTime / totalMilliseconds) * 100;
-
-    // Update the timer progress bar
-    const progressBar = document.querySelector('.progress-bar');
-    progressBar.style.width = `${percentage}%`;
-
-    animationFrameId = requestAnimationFrame(update);
+      if (elapsedTime >= totalMilliseconds) {
+          // Timer is up. Reset everything
+          stopAnimations();
+          return;
+      }
+      
+      animationFrameId = requestAnimationFrame(update);
   }
 
   update();
 }
+
+function startRingAnimation(circle, duration) {
+  const length = circle.getTotalLength();
+  circle.style.strokeDasharray = length;
+  circle.style.strokeDashoffset = length;
+  circle.style.animation = `rotateCounterClockwise ${duration}ms linear infinite forwards`;
+}
+
+function stopAnimations() {
+  const secRing = document.getElementById('ss');
+  const minRing = document.getElementById('mm');
+  const hrRing = document.getElementById('hh');
+
+  secRing.style.animation = 'none';
+  minRing.style.animation = 'none';
+  hrRing.style.animation = 'none';
+
+  // Reset stroke-dashoffset to full length to visually fill the circle
+  secRing.style.strokeDashoffset = secRing.getTotalLength();
+  minRing.style.strokeDashoffset = minRing.getTotalLength();
+  hrRing.style.strokeDashoffset = hrRing.getTotalLength();
+}
+
+saveBtn.addEventListener('click', startTimer);
