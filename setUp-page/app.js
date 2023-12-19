@@ -304,10 +304,10 @@ if (remainingDay == undefined) {
 }
 
 let rimTimes;
-
+let intervalId = null;
 function remainingTime() {
-
-  setInterval(() => {
+  clearInterval(intervalId); // Ensure no previous interval is running
+  intervalId = setInterval(() => {
     let rimDay = remainingDay;
 
     let rimHouer = lastTimeData.hours - new Date().getHours();
@@ -376,7 +376,8 @@ let totalMilliseconds;
 let elapsedTime = 0;
 
 function startTimer() {
-    // Cancel any existing timers
+  // Cancel any existing timers
+
 
   const daysInput = parseInt(document.getElementById('dd-rem').textContent);
   const hoursInput = parseInt(document.getElementById('hh-rem').textContent);
@@ -408,7 +409,7 @@ function startTimer() {
       alert("Time is up!");
       return;
     }
-    
+
     // Calculate and update the remaining time components
     const remainingDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
     const remainingHours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -419,6 +420,7 @@ function startTimer() {
     hoursSpan.textContent = remainingHours < 10 ? '0' + remainingHours : remainingHours;
     minutesSpan.textContent = remainingMinutes < 10 ? '0' + remainingMinutes : remainingMinutes;
     secondsSpan.textContent = remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds;
+    rimTimes.intervalId = intervalId;
   }, 1000);
   rimTimes = { intervalId: intervalId };
 
@@ -431,7 +433,7 @@ function startTimer() {
   updateClock(totalMilliseconds);
   const selectedHour = lastTimeData.hours;
   const selectedMinute = lastTimeData.minutes;
-  
+
   // Convert selected time to the remaining time in milliseconds
   const now = new Date();
   const selectedTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), selectedHour, selectedMinute);
@@ -515,6 +517,7 @@ saveBtn.addEventListener('click', startTimer);
 let alarmSet = false;
 
 saveBtn.addEventListener("click", () => {
+  clearInterval(intervalId); // Clear the interval when the save button is clicked
   if (!alarmSet) {
     // Code to activate the alarm goes here.
     activateAlarm();
@@ -542,4 +545,6 @@ function activateAlarm() {
 function deactivateAlarm() {
   // Logic to stop the alarm clock
   stopAnimations();
+  clearInterval(intervalId); // Stop the interval when the alarm is deactivated
+
 }
